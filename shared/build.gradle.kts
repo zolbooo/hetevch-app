@@ -21,9 +21,14 @@ kotlin {
             baseName = "shared"
         }
     }
-    
+
+    val koinVersion = "3.4.0"
     sourceSets {
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+                implementation("io.insert-koin:koin-core:$koinVersion")
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
