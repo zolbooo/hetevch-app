@@ -12,8 +12,8 @@ kotlin {
     iosSimulatorArm64()
 
     cocoapods {
-        summary = "Some description for the Shared Module"
-        homepage = "Link to the Shared Module homepage"
+        summary = "Hetevch app shared logic: computations and persistence"
+        homepage = "https://github.com/zolbooo/hetevch-app/tree/main/shared"
         version = "1.0"
         ios.deploymentTarget = "14.1"
         podfile = project.file("../iosApp/Podfile")
