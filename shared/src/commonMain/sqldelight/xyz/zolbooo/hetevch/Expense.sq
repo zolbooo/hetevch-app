@@ -1,0 +1,7 @@
+CREATE TABLE expenses(
+    amount INTEGER NOT NULL,
+--  UNIX timestamp of expense date
+    date INTEGER NOT NULL
+);
+
+CREATE INDEX expenses_date ON expenses(date);
