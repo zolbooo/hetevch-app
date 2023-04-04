@@ -16,3 +16,6 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}) = startKoin {
         platformModule(),
     )
 }
+
+// This overload is used by iOS app
+fun initKoin() = initKoin {}
