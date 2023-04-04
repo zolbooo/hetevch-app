@@ -59,6 +59,14 @@ kotlin {
     }
 }
 
+sqldelight {
+    databases {
+        create("Database") {
+            packageName.set("xyz.zolbooo.hetevch")
+        }
+    }
+}
+
 android {
     namespace = "xyz.zolbooo.hetevch"
     compileSdk = 33
