@@ -7,7 +7,9 @@ interface IBudgetRepository {
     fun setBudget(amount: Long, date: String)
 }
 
-class BudgetRepository : KoinComponent, IBudgetRepository {
+class BudgetRepository(
+    private val database: Database,
+) : IBudgetRepository {
     override suspend fun getLatest(): Budgets {
         TODO("Not yet implemented")
     }
