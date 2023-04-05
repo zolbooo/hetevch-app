@@ -16,23 +16,30 @@ class ExpenseQueriesTest : RobolectricTests() {
 
     @AfterTest
     fun teardown() {
+        database.budgetQueries.deleteAll()
         database.expenseQueries.deleteAll()
         databaseDriver.close()
     }
 
     @Test
-    fun insertAndGetLatest() {
-        database.transaction {
-            repeat(3) {
-                database.expenseQueries.insert(1000L * (it + 1), it.toLong())
-            }
-        }
+    fun recordExpense() {
+        database.budgetQueries.setBudget(10000L, 1000L)
+        val initialBudget = database.budgetQueries.selectLatest().executeAsOne()
+        assertEquals(10000L, initialBudget.balance)
 
-        val latestExpenses = database.expenseQueries.selectAll().executeAsList()
-        assertEquals(3, latestExpenses.size)
-        // Expenses must be sorted by date in descending order
-        assertEquals(3000, latestExpenses[0].amount)
-        assertEquals(2000, latestExpenses[1].amount)
-        assertEquals(1000, latestExpenses[2].amount)
+        database.expenseQueries.recordExpense(2000L, 1010L)
+        val updatedBudget = database.budgetQueries.selectLatest().executeAsOne()
+        assertEquals(8000L, updatedBudget.balance)
+    }
+
+    @Test
+    fun recordExpenseAmountOverflow() {
+        database.budgetQueries.setBudget(10000L, 1000L)
+        val initialBudget = database.budgetQueries.selectLatest().executeAsOne()
+        assertEquals(10000L, initialBudget.balance)
+
+        database.expenseQueries.recordExpense(15000L, 1010L)
+        val updatedBudget = database.budgetQueries.selectLatest().executeAsOne()
+        assertEquals(0L, updatedBudget.balance)
     }
 }

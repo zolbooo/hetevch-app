@@ -17,7 +17,7 @@ class ExpenseRepository(
     private val database: Database,
 ) : IExpenseRepository {
     override fun recordExpense(amount: Long) {
-        database.expenseQueries.insert(
+        database.expenseQueries.recordExpense(
             amount = amount,
             date = Clock.System.now().epochSeconds,
         )

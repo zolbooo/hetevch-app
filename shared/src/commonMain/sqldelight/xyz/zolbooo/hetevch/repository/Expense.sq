@@ -8,8 +8,12 @@ CREATE TABLE expenses(
 
 CREATE INDEX expenses_date ON expenses(date);
 
-insert:
-INSERT INTO expenses (amount, date) VALUES (?, ?);
+-- This is a single transaction. See:
+-- https://cashapp.github.io/sqldelight/2.0.0-alpha05/multiplatform_sqlite/grouping_statements/
+recordExpense {
+    UPDATE budgets SET balance = MAX(balance - :amount, 0) WHERE id = 1;
+    INSERT INTO expenses (amount, date) VALUES (:amount, :date);
+}
 
 delete:
 DELETE FROM expenses WHERE id = ?;
