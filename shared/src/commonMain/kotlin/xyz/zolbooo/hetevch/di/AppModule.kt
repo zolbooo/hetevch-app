@@ -7,7 +7,10 @@ import org.koin.dsl.module
 import xyz.zolbooo.hetevch.repository.*
 
 val appModule = module {
-    single { createDatabase(get()) }
+    single {
+        val driverFactory = get<DriverFactory>()
+        Database(driverFactory.createDriver())
+    }
 }
 val repositoryModule = module {
     single<IBudgetRepository> { BudgetRepository(get()) }
