@@ -1,8 +1,10 @@
 package xyz.zolbooo.hetevch.repository
 
+import kotlinx.datetime.*
+
 interface IBudgetRepository {
     suspend fun getLatest(): Budgets?
-    fun setBudget(amount: Long, date: String)
+    fun setBudget(amount: Long, durationInDays: Int)
 }
 
 class BudgetRepository(
@@ -11,10 +13,17 @@ class BudgetRepository(
     override suspend fun getLatest(): Budgets? =
         database.budgetQueries.selectLatest().executeAsOneOrNull()
 
-    override fun setBudget(amount: Long, date: String) {
+    override fun setBudget(amount: Long, durationInDays: Int) {
+        val timeZone = TimeZone.currentSystemDefault()
+        val endDayTimestamp = Clock.System.now()
+            .toLocalDateTime(timeZone)
+            .date
+            .plus(durationInDays, DateTimeUnit.DAY)
+            .atStartOfDayIn(timeZone)
+            .epochSeconds
         database.budgetQueries.setBudget(
             amount = amount,
-            endDate = TODO("Parse date into Long"),
+            endDate = endDayTimestamp,
         )
     }
 }
