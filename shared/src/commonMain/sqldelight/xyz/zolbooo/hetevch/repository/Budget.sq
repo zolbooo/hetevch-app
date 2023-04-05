@@ -13,3 +13,6 @@ SELECT amount, endDate FROM budgets ORDER BY id DESC LIMIT 1;
 
 insert:
 INSERT INTO budgets(amount, balance, endDate) VALUES (?, amount,?);
+
+updateBudget:
+UPDATE budgets SET amount = ?, balance = amount, endDate = ? WHERE id = ?;
