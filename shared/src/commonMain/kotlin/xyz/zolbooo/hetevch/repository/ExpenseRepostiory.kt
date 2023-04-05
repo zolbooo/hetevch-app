@@ -26,6 +26,6 @@ class ExpenseRepository : KoinComponent, IExpenseRepository {
     }
 
     override fun removeExpense(id: Long) {
-        TODO("Not yet implemented")
+        database.expenseQueries.delete(id)
     }
 }
