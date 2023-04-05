@@ -2,8 +2,6 @@ package xyz.zolbooo.hetevch.repository
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.datetime.Clock
-import org.koin.core.component.KoinComponent
-import org.koin.core.component.inject
 
 interface IExpenseRepository {
     fun getAll(): Flow<List<Expenses>>
@@ -11,9 +9,9 @@ interface IExpenseRepository {
     fun removeExpense(id: Long)
 }
 
-class ExpenseRepository : KoinComponent, IExpenseRepository {
-    private val database: Database by inject()
-
+class ExpenseRepository(
+    private val database: Database,
+) : IExpenseRepository {
     override fun recordExpense(amount: Long) {
         database.expenseQueries.insert(
             amount = amount,
