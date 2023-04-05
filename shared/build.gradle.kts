@@ -28,6 +28,8 @@ kotlin {
             dependencies {
                 implementation("io.insert-koin:koin-core:$koinVersion")
                 implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.0-Beta")
+                implementation("app.cash.sqldelight:coroutines-extensions:2.0.0-alpha05")
             }
         }
         val commonTest by getting {
