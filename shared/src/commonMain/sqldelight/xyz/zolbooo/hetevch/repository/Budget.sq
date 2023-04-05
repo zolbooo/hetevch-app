@@ -9,13 +9,11 @@ CREATE TABLE budgets(
 CREATE INDEX budgets_endDate ON budgets(endDate);
 
 selectLatest:
-SELECT * FROM budgets ORDER BY id DESC LIMIT 1;
+SELECT * FROM budgets WHERE id = 1;
 
-insert:
-INSERT INTO budgets(amount, balance, endDate) VALUES (:amount, :amount,:endDate);
-
-updateBudget:
-UPDATE budgets SET amount = :amount, balance = :amount, endDate = :endDate WHERE id = :id;
+setBudget:
+INSERT OR REPLACE INTO budgets(id, amount, balance, endDate)
+    VALUES (1, :amount, :amount,:endDate);
 
 deleteAll:
 DELETE FROM budgets;
