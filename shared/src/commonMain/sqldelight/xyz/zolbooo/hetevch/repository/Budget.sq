@@ -15,7 +15,7 @@ insert:
 INSERT INTO budgets(amount, balance, endDate) VALUES (:amount, :amount,:endDate);
 
 updateBudget:
-UPDATE budgets SET amount = ?, balance = amount, endDate = ? WHERE id = ?;
+UPDATE budgets SET amount = :amount, balance = :amount, endDate = :endDate WHERE id = :id;
 
 deleteAll:
 DELETE FROM budgets;

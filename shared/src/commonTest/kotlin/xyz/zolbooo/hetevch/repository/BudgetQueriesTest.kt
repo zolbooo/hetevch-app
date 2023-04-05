@@ -28,4 +28,27 @@ class BudgetQueriesTest : RobolectricTests() {
         assertEquals(amount, budget.balance)
         assertEquals(timestamp, budget.endDate)
     }
+
+    @Test
+    fun insertAndUpdateBudget() {
+        val amount = 1000L
+        val timestamp = 1000L
+        database.budgetQueries.insert(amount, timestamp)
+
+        var budget = database.budgetQueries.selectLatest().executeAsOneOrNull()
+        assertNotNull(budget, "Expected budget to be inserted")
+
+        val newAmount = 10000L
+        val newTimestamp = 10000L
+        database.budgetQueries.updateBudget(
+            amount = newAmount,
+            endDate = newTimestamp,
+            id = budget.id,
+        )
+
+        budget = database.budgetQueries.selectLatest().executeAsOneOrNull()
+        assertNotNull(budget, "Expected budget to be exist")
+        assertEquals(newAmount, budget.amount)
+        assertEquals(newAmount, budget.balance)
+    }
 }
