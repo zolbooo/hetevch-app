@@ -4,7 +4,7 @@ import kotlinx.datetime.*
 
 interface IBudgetRepository {
     suspend fun getLatest(): Budgets?
-    fun setBudget(amount: Long, durationInDays: Int)
+    suspend fun setBudget(amount: Long, durationInDays: Int)
 }
 
 class BudgetRepository(
@@ -13,7 +13,7 @@ class BudgetRepository(
     override suspend fun getLatest(): Budgets? =
         database.budgetQueries.selectLatest().executeAsOneOrNull()
 
-    override fun setBudget(amount: Long, durationInDays: Int) {
+    override suspend fun setBudget(amount: Long, durationInDays: Int) {
         val timeZone = TimeZone.currentSystemDefault()
         val endDayTimestamp = Clock.System.now()
             .toLocalDateTime(timeZone)
