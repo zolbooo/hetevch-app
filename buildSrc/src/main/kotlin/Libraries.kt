@@ -42,6 +42,9 @@ object Libraries {
     }
 
     object UnitTests {
+        object Common {
+            const val coroutinesTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
+        }
         object Android {
             const val testKtx = "androidx.test:core-ktx:${Versions.testKtx}"
             const val robolectric = "org.robolectric:robolectric:${Versions.robolectric}"

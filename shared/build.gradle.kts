@@ -34,6 +34,7 @@ kotlin {
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
+                implementation(Libraries.UnitTests.Common.coroutinesTest)
             }
         }
         val androidMain by getting {
