@@ -9,7 +9,7 @@ CREATE TABLE budgets(
 CREATE INDEX budgets_endDate ON budgets(endDate);
 
 selectLatest:
-SELECT amount, balance, endDate FROM budgets ORDER BY id DESC LIMIT 1;
+SELECT * FROM budgets ORDER BY id DESC LIMIT 1;
 
 insert:
 INSERT INTO budgets(amount, balance, endDate) VALUES (:amount, :amount,:endDate);
