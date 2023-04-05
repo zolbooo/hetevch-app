@@ -1,0 +1,7 @@
+CREATE TABLE budgets(
+    amount INTEGER NOT NULL,
+--  UNIX timestamp of end date
+    endDate INTEGER NOT NULL
+);
+
+CREATE INDEX budgets_endDate ON budgets(endDate);
