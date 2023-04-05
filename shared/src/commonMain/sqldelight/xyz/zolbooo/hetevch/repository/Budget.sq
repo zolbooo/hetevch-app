@@ -12,7 +12,7 @@ selectLatest:
 SELECT amount, endDate FROM budgets ORDER BY id DESC LIMIT 1;
 
 insert:
-INSERT INTO budgets(amount, balance, endDate) VALUES (?, amount,?);
+INSERT INTO budgets(amount, balance, endDate) VALUES (:amount, :amount,:endDate);
 
 updateBudget:
 UPDATE budgets SET amount = ?, balance = amount, endDate = ? WHERE id = ?;
