@@ -41,7 +41,11 @@ kotlin {
                 implementation(Libraries.Android.sqlDelight)
             }
         }
-        val androidUnitTest by getting
+        val androidUnitTest by getting {
+            dependencies {
+                implementation(Libraries.UnitTests.Android.testKtx)
+            }
+        }
         val iosX64Main by getting
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting
