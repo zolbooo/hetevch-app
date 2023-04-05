@@ -1,7 +1,24 @@
 CREATE TABLE expenses(
+--  See: https://www.sqlite.org/lang_createtable.html#rowid
+    id INTEGER NOT NULL PRIMARY KEY,
     amount INTEGER NOT NULL,
 --  UNIX timestamp of expense date
     date INTEGER NOT NULL
 );
 
 CREATE INDEX expenses_date ON expenses(date);
+
+insert:
+INSERT INTO expenses (amount, date) VALUES (?, ?);
+
+delete:
+DELETE FROM expenses WHERE id = ?;
+
+selectAll:
+SELECT id, amount, date FROM expenses ORDER BY date DESC;
+
+sumExpensesSince:
+SELECT SUM(amount) FROM expenses WHERE date >= ?;
+
+deleteAll:
+DELETE FROM expenses;

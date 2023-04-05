@@ -2,7 +2,7 @@ plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
     id("com.android.library")
-    id("app.cash.sqldelight") version "2.0.0-alpha05"
+    id("app.cash.sqldelight") version Versions.sqlDelight
 }
 
 kotlin {
@@ -22,11 +22,13 @@ kotlin {
         }
     }
 
-    val koinVersion = "3.4.0"
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("io.insert-koin:koin-core:$koinVersion")
+                implementation(Libraries.Common.koinCore)
+                implementation(Libraries.Common.kotlinxDatetime)
+                implementation(Libraries.Common.kotlinxCoroutinesCore)
+                implementation(Libraries.Common.sqlDelightCoroutinesExtension)
             }
         }
         val commonTest by getting {
@@ -36,10 +38,15 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation("app.cash.sqldelight:android-driver:2.0.0-alpha05")
+                implementation(Libraries.Android.sqlDelight)
             }
         }
-        val androidUnitTest by getting
+        val androidUnitTest by getting {
+            dependencies {
+                implementation(Libraries.UnitTests.Android.testKtx)
+                implementation(Libraries.UnitTests.Android.robolectric)
+            }
+        }
         val iosX64Main by getting
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting
@@ -49,7 +56,7 @@ kotlin {
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
             dependencies {
-                implementation("app.cash.sqldelight:native-driver:2.0.0-alpha05")
+                implementation(Libraries.iOS.sqlDelight)
             }
         }
         val iosX64Test by getting
