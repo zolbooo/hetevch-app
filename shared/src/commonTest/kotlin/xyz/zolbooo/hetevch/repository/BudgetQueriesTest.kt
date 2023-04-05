@@ -1,10 +1,7 @@
 package xyz.zolbooo.hetevch.repository
 
 import xyz.zolbooo.hetevch.RobolectricTests
-import kotlin.test.BeforeTest
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertNotNull
+import kotlin.test.*
 
 class BudgetQueriesTest : RobolectricTests() {
     private lateinit var database: Database
@@ -12,6 +9,11 @@ class BudgetQueriesTest : RobolectricTests() {
     @BeforeTest
     fun setup() {
         database = createDatabase(getTestDriverFactory())
+    }
+
+    @AfterTest
+    fun teardown() {
+        database.budgetQueries.deleteAll()
     }
 
     @Test
