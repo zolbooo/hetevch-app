@@ -12,6 +12,20 @@ class BudgetRepository(
         database.budgetQueries.selectLatest().executeAsOneOrNull()
 
     override fun setBudget(amount: Long, date: String) {
-        TODO("Not yet implemented")
+        database.budgetQueries.transaction {
+            val budget = database.budgetQueries.selectLatest().executeAsOneOrNull()
+            if (budget != null) {
+                database.budgetQueries.updateBudget(
+                    amount = amount,
+                    endDate = TODO("Convert string date to Long"),
+                    id = budget.id,
+                )
+            } else {
+                database.budgetQueries.insert(
+                    amount = amount,
+                    endDate = TODO("Convert string date to Long"),
+                )
+            }
+        }
     }
 }
