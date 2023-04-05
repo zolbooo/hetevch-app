@@ -1,5 +1,7 @@
 CREATE TABLE budgets(
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     amount INTEGER NOT NULL,
+    balance INTEGER NOT NULL,
 --  UNIX timestamp of end date
     endDate INTEGER NOT NULL
 );
@@ -7,7 +9,7 @@ CREATE TABLE budgets(
 CREATE INDEX budgets_endDate ON budgets(endDate);
 
 selectLatest:
-SELECT amount, endDate FROM budgets ORDER BY endDate DESC LIMIT 1;
+SELECT amount, endDate FROM budgets ORDER BY id DESC LIMIT 1;
 
 insert:
-INSERT INTO budgets(amount, endDate) VALUES (?, ?);
+INSERT INTO budgets(amount, balance, endDate) VALUES (?, amount,?);
