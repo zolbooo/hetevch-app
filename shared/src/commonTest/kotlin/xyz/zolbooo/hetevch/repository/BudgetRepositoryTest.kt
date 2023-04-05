@@ -2,6 +2,7 @@ package xyz.zolbooo.hetevch.repository
 
 import app.cash.sqldelight.db.SqlDriver
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.runTest
 import kotlinx.datetime.*
 import xyz.zolbooo.hetevch.RobolectricTests
 import kotlin.test.*
@@ -26,32 +27,29 @@ class BudgetRepositoryTest : RobolectricTests() {
     }
 
     @Test
-    fun getBudgetEmpty() {
-        runBlocking {
-            assertNull(budgetRepository.getLatest())
-        }
+    fun getBudgetEmpty() = runTest {
+        assertNull(budgetRepository.getLatest())
     }
 
     @Test
-    fun setBudget() {
+    fun setBudget() = runTest {
         val secondsInDay = 60 * 60 * 24
-        runBlocking {
-            budgetRepository.setBudget(10_000L, 3)
-            val currentTimeZone = TimeZone.currentSystemDefault()
-            val todayStartTimestamp = Clock.System.now()
-                .toLocalDateTime(currentTimeZone)
-                .date.atStartOfDayIn(currentTimeZone)
-                .epochSeconds
+        val currentTimeZone = TimeZone.currentSystemDefault()
 
-            val budget = budgetRepository.getLatest()
-            assertNotNull(budget)
+        budgetRepository.setBudget(10_000L, 3)
+        val todayStartTimestamp = Clock.System.now()
+            .toLocalDateTime(currentTimeZone)
+            .date.atStartOfDayIn(currentTimeZone)
+            .epochSeconds
 
-            assertEquals(10_000L, budget.balance)
-            assertEquals(10_000L, budget.amount)
-            assertEquals(
-                todayStartTimestamp + secondsInDay * 3,
-                budget.endDate,
-            )
-        }
+        val budget = budgetRepository.getLatest()
+        assertNotNull(budget)
+
+        assertEquals(10_000L, budget.balance)
+        assertEquals(10_000L, budget.amount)
+        assertEquals(
+            todayStartTimestamp + secondsInDay * 3,
+            budget.endDate,
+        )
     }
 }
