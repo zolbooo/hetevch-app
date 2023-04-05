@@ -1,4 +1,4 @@
-package xyz.zolbooo.hetevch
+package xyz.zolbooo.hetevch.repository
 
 import android.content.Context
 import app.cash.sqldelight.db.SqlDriver

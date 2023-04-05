@@ -67,7 +67,7 @@ kotlin {
 sqldelight {
     databases {
         create("Database") {
-            packageName.set("xyz.zolbooo.hetevch")
+            packageName.set("xyz.zolbooo.hetevch.repository")
         }
     }
 }

@@ -1,4 +1,4 @@
-package xyz.zolbooo.hetevch
+package xyz.zolbooo.hetevch.repository
 
 import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.native.NativeSqliteDriver
