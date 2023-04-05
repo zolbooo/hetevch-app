@@ -8,3 +8,6 @@ CREATE INDEX budgets_endDate ON budgets(endDate);
 
 selectLatest:
 SELECT amount, endDate FROM budgets ORDER BY endDate DESC LIMIT 1;
+
+insert:
+INSERT INTO budgets(amount, endDate) VALUES (?, ?);
