@@ -13,3 +13,6 @@ INSERT INTO expenses (amount, date) VALUES (?, ?);
 
 delete:
 DELETE FROM expenses WHERE id = ?;
+
+selectAll:
+SELECT id, amount, date FROM expenses ORDER BY date DESC;
