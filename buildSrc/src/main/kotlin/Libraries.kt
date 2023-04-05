@@ -12,7 +12,9 @@ object Versions {
     const val composeBom = "2023.03.00"
 
     const val activityCompose = "1.7.0"
+
     const val testKtx = "1.5.0"
+    const val robolectric = "4.9"
 }
 
 object Libraries {
@@ -42,6 +44,7 @@ object Libraries {
     object UnitTests {
         object Android {
             const val testKtx = "androidx.test:core-ktx:${Versions.testKtx}"
+            const val robolectric = "org.robolectric:robolectric:${Versions.robolectric}"
         }
     }
 

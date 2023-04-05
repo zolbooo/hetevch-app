@@ -44,6 +44,7 @@ kotlin {
         val androidUnitTest by getting {
             dependencies {
                 implementation(Libraries.UnitTests.Android.testKtx)
+                implementation(Libraries.UnitTests.Android.robolectric)
             }
         }
         val iosX64Main by getting
