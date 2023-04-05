@@ -5,3 +5,6 @@ CREATE TABLE budgets(
 );
 
 CREATE INDEX budgets_endDate ON budgets(endDate);
+
+selectLatest:
+SELECT amount, endDate FROM budgets ORDER BY endDate DESC LIMIT 1;
