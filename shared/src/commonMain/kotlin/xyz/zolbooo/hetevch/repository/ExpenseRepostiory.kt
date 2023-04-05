@@ -31,6 +31,6 @@ class ExpenseRepository(
             .mapToList(Dispatchers.IO)
 
     override fun removeExpense(id: Long) {
-        database.expenseQueries.delete(id)
+        database.expenseQueries.deleteExpense(id)
     }
 }
