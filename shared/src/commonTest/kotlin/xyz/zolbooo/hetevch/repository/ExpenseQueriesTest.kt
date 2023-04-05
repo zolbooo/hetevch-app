@@ -59,4 +59,19 @@ class ExpenseQueriesTest : RobolectricTests() {
         val updatedBudget = database.budgetQueries.selectLatest().executeAsOne()
         assertEquals(9000L, updatedBudget.balance)
     }
+
+    @Test
+    fun sumExpensesSince() {
+        database.budgetQueries.setBudget(10000L, 1000L)
+        val initialBudget = database.budgetQueries.selectLatest().executeAsOne()
+        assertEquals(10000L, initialBudget.balance)
+
+        database.expenseQueries.recordExpense(1000L, 1010L)
+        database.expenseQueries.recordExpense(2000L, 1020L)
+        database.expenseQueries.recordExpense(2000L, 1030L)
+        assertEquals(
+            4000L,
+            database.expenseQueries.sumExpensesSince(1020L).executeAsOne().SUM,
+        )
+    }
 }
