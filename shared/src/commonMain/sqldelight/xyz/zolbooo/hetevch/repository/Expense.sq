@@ -16,3 +16,6 @@ DELETE FROM expenses WHERE id = ?;
 
 selectAll:
 SELECT id, amount, date FROM expenses ORDER BY date DESC;
+
+sumExpensesSince:
+SELECT SUM(amount) FROM expenses WHERE date >= ?;
