@@ -5,9 +5,9 @@ import android.icu.text.NumberFormat
 import android.icu.util.Currency
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Card
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
+import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -26,18 +26,22 @@ fun BudgetCard(amount: Long, modifier: Modifier = Modifier) {
         }
         formatter.format(amount)
     }
-    Card(modifier) {
+    ElevatedCard(modifier = modifier) {
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier.padding(horizontal = 10.dp, vertical = 10.dp),
         ) {
-            Column(Modifier.align(Alignment.Bottom).padding(start = 10.dp)) {
+            Column(
+                Modifier
+                    .align(Alignment.Bottom)
+                    .padding(start = 10.dp)
+            ) {
                 // TODO: We can possibly use Inter font for this label
                 Text(
                     text = stringResource(R.string.my_goal),
-                    style = MaterialTheme.typography.caption,
+                    style = MaterialTheme.typography.bodySmall,
                 )
-                Text(text = amountText, style = MaterialTheme.typography.h6)
+                Text(text = amountText, style = MaterialTheme.typography.titleLarge)
             }
             Spacer(Modifier.width(10.dp))
             Image(
