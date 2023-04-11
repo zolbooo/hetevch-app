@@ -12,6 +12,7 @@ object Versions {
     const val composeBom = "2023.03.00"
 
     const val activityCompose = "1.7.0"
+    const val composeNavigation = "2.5.3"
 
     const val testKtx = "1.5.0"
     const val robolectric = "4.9"
@@ -28,6 +29,7 @@ object Libraries {
         const val uiToolingPreview = "androidx.compose.ui:ui-tooling-preview"
         const val foundation = "androidx.compose.foundation:foundation"
         const val material = "androidx.compose.material:material"
+        const val navigation = "androidx.navigation:navigation-compose:${Versions.composeNavigation}"
     }
 
     object Common {

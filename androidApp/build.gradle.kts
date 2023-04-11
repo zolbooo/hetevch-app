@@ -42,6 +42,7 @@ dependencies {
     implementation(Libraries.Compose.uiToolingPreview)
     implementation(Libraries.Compose.foundation)
     implementation(Libraries.Compose.material)
+    implementation(Libraries.Compose.navigation)
 
     implementation(Libraries.activityCompose)
     implementation(Libraries.koinAndroid)
