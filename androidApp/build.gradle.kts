@@ -41,7 +41,8 @@ dependencies {
     implementation(Libraries.Compose.uiTooling)
     implementation(Libraries.Compose.uiToolingPreview)
     implementation(Libraries.Compose.foundation)
-    implementation(Libraries.Compose.material)
+    implementation(Libraries.Compose.material3)
+    implementation(Libraries.Compose.material3WindowSizeClass)
     implementation(Libraries.Compose.navigation)
 
     implementation(Libraries.activityCompose)

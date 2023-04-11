@@ -11,6 +11,7 @@ object Versions {
     const val sqlDelight = "2.0.0-alpha05"
     const val composeBom = "2023.03.00"
 
+    const val material3 = "1.0.1"
     const val activityCompose = "1.7.0"
     const val composeNavigation = "2.5.3"
 
@@ -28,7 +29,8 @@ object Libraries {
         const val uiTooling = "androidx.compose.ui:ui-tooling"
         const val uiToolingPreview = "androidx.compose.ui:ui-tooling-preview"
         const val foundation = "androidx.compose.foundation:foundation"
-        const val material = "androidx.compose.material:material"
+        const val material3 = "androidx.compose.material3:material3:${Versions.material3}"
+        const val material3WindowSizeClass = "androidx.compose.material3:material3-window-size-class:${Versions.material3}"
         const val navigation = "androidx.navigation:navigation-compose:${Versions.composeNavigation}"
     }
 
