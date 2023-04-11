@@ -6,4 +6,11 @@
     <string name="budget_duration">Хугацаа</string>
     <string name="budget_daily_amount">Өдрийн төсөв</string>
     <string name="budget_save">Хадгалах</string>
+    <!-- Home screen -->
+    <string name="greeting_morning">Өглөөний мэнд</string>
+    <string name="greeting_afternoon">Өдрийн мэнд</string>
+    <string name="greeting_evening">Оройн мэнд</string>
+    <string name="greeting_night">Шөнийн мэнд</string>
+    <string name="today_budget">Өнөөдрийн төсөв</string>
+    <string name="expenses">Зарлага</string>
 </resources>
