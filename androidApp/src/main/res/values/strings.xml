@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="my_goal">Миний зорилтот төлөвлөгөө</string>
+    <!-- Budget widget -->
+    <string name="budget_amount">Төсөв</string>
+    <string name="budget_duration">Хугацаа</string>
+    <string name="budget_daily_amount">Өдрийн төсөв</string>
+    <string name="budget_save">Хадгалах</string>
 </resources>
