@@ -29,7 +29,9 @@ fun BudgetCard(amount: Long, modifier: Modifier = Modifier) {
     ElevatedCard(modifier = modifier) {
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier.padding(horizontal = 10.dp, vertical = 10.dp),
+            modifier = Modifier
+                .padding(horizontal = 10.dp, vertical = 10.dp)
+                .fillMaxWidth(),
         ) {
             Column(
                 Modifier
