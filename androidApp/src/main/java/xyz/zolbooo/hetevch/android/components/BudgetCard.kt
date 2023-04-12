@@ -17,15 +17,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import xyz.zolbooo.hetevch.android.ui.HetevchTheme
 import xyz.zolbooo.hetevch.android.R
+import xyz.zolbooo.hetevch.android.utils.formatMNT
 
 @Composable
 fun BudgetCard(amount: Long, modifier: Modifier = Modifier) {
-    val amountText = remember {
-        val formatter = NumberFormat.getCurrencyInstance().apply {
-            currency = Currency.getInstance("MNT")
-        }
-        formatter.format(amount)
-    }
     ElevatedCard(modifier = modifier) {
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
@@ -43,7 +38,7 @@ fun BudgetCard(amount: Long, modifier: Modifier = Modifier) {
                     text = stringResource(R.string.my_goal),
                     style = MaterialTheme.typography.bodySmall,
                 )
-                Text(text = amountText, style = MaterialTheme.typography.titleLarge)
+                Text(text = amount.formatMNT(), style = MaterialTheme.typography.titleLarge)
             }
             Spacer(Modifier.width(10.dp))
             Image(
