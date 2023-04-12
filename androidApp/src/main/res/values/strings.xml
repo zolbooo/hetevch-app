@@ -14,4 +14,9 @@
     <string name="today_budget">Өнөөдрийн төсөв</string>
     <string name="expenses">Зарлага</string>
     <string name="add_expense">Зарлага нэмэх</string>
+    <!-- Add expense screen -->
+    <string name="back">Буцах</string>
+    <string name="remaining_balance">Үлдэгдэл %s</string>
+    <string name="backspace">Устгах</string>
+    <string name="save">Хадгалах</string>
 </resources>
