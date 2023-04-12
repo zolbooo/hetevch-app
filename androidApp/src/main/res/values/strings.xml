@@ -25,7 +25,7 @@
     <string name="your_saving">Таны хэмнэсэн мөнгө</string>
     <string name="what_would_you_like_to_do">Та хэмнэсэн мөнгөө яамаар байна?</string>
     <string name="add_to_budget">Нийт төсөвт нэмэх</string>
-    <string name="your_budget_will_be">Таны шинэ төсөв %s болно.</string>
+    <string name="your_budget_will_be">Таны шинэ төсөв %s / %d өдөр болно.</string>
     <string name="add_to_today_budget">Өнөөдрийн төсөвт нэмэх</string>
     <string name="your_budget_for_today_will_be">Өнөөдрийн шинэ төсөв %s болно.</string>
     <string name="save_money">Далд хийх</string>

@@ -15,10 +15,19 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import xyz.zolbooo.hetevch.android.R
 import xyz.zolbooo.hetevch.android.ui.HetevchTheme
+import xyz.zolbooo.hetevch.android.utils.formatMNT
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CongratulationsScreen() {
+fun CongratulationsScreen(
+    savedAmount: Long,
+    estimatedNewBudgetAmount: Long,
+    budgetDurationInDays: Int,
+    estimatedNewTodayBudgetAmount: Long,
+    onAddToTotalBudgetPress: () -> Unit,
+    onAddToDailyBudgetPress: () -> Unit,
+    onSavePress: () -> Unit,
+) {
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
@@ -44,7 +53,7 @@ fun CongratulationsScreen() {
                 fontWeight = FontWeight.Light,
             )
             Text(
-                text = "₮2500",
+                text = savedAmount.formatMNT(),
                 style = MaterialTheme.typography.headlineLarge,
                 fontWeight = FontWeight.Bold,
             )
@@ -60,7 +69,7 @@ fun CongratulationsScreen() {
                             modifier = Modifier.padding(horizontal = 20.dp),
                         )
                         Spacer(Modifier.height(24.dp))
-                        OutlinedButton(onClick = { /*TODO*/ }, modifier = Modifier.fillMaxWidth()) {
+                        OutlinedButton(onClick = onAddToTotalBudgetPress, modifier = Modifier.fillMaxWidth()) {
                             Column(
                                 horizontalAlignment = Alignment.CenterHorizontally,
                                 verticalArrangement = Arrangement.spacedBy(5.dp),
@@ -71,7 +80,9 @@ fun CongratulationsScreen() {
                                 Text(stringResource(R.string.add_to_budget))
                                 Text(
                                     text = stringResource(
-                                        R.string.your_budget_will_be, "2700₮ / 2 өдөр"
+                                        R.string.your_budget_will_be,
+                                        estimatedNewBudgetAmount.formatMNT(),
+                                        budgetDurationInDays,
                                     ),
                                     style = MaterialTheme.typography.bodySmall,
                                     textAlign = TextAlign.Center,
@@ -79,7 +90,7 @@ fun CongratulationsScreen() {
                             }
                         }
                         Spacer(Modifier.height(10.dp))
-                        OutlinedButton(onClick = { /*TODO*/ }) {
+                        OutlinedButton(onClick = onAddToDailyBudgetPress) {
                             Column(
                                 horizontalAlignment = Alignment.CenterHorizontally,
                                 verticalArrangement = Arrangement.spacedBy(5.dp),
@@ -90,7 +101,8 @@ fun CongratulationsScreen() {
                                 Text(stringResource(R.string.add_to_today_budget))
                                 Text(
                                     text = stringResource(
-                                        R.string.your_budget_for_today_will_be, "2700₮"
+                                        R.string.your_budget_for_today_will_be,
+                                        estimatedNewTodayBudgetAmount.formatMNT(),
                                     ),
                                     style = MaterialTheme.typography.bodySmall,
                                     textAlign = TextAlign.Center,
@@ -98,7 +110,7 @@ fun CongratulationsScreen() {
                             }
                         }
                         Spacer(Modifier.height(10.dp))
-                        OutlinedButton(onClick = { /*TODO*/ }) {
+                        OutlinedButton(onClick = onSavePress) {
                             Column(
                                 horizontalAlignment = Alignment.CenterHorizontally,
                                 verticalArrangement = Arrangement.spacedBy(5.dp),
@@ -125,7 +137,15 @@ fun CongratulationsScreen() {
 @Composable
 fun CongratulationsScreenPreview() {
     HetevchTheme {
-        CongratulationsScreen()
+        CongratulationsScreen(
+            savedAmount = 25_000,
+            estimatedNewBudgetAmount = 3000,
+            budgetDurationInDays = 10,
+            estimatedNewTodayBudgetAmount = 30_000,
+            onAddToTotalBudgetPress = {},
+            onAddToDailyBudgetPress = {},
+            onSavePress = {}
+        )
     }
 }
 
@@ -133,6 +153,14 @@ fun CongratulationsScreenPreview() {
 @Composable
 fun CongratulationsScreenPreviewDarkMode() {
     HetevchTheme {
-        CongratulationsScreen()
+        CongratulationsScreen(
+            savedAmount = 500,
+            estimatedNewBudgetAmount = 1000,
+            budgetDurationInDays = 3,
+            estimatedNewTodayBudgetAmount = 3000,
+            onAddToTotalBudgetPress = {},
+            onAddToDailyBudgetPress = {},
+            onSavePress = {}
+        )
     }
 }
