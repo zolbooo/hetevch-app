@@ -13,4 +13,5 @@
     <string name="greeting_night">Шөнийн мэнд</string>
     <string name="today_budget">Өнөөдрийн төсөв</string>
     <string name="expenses">Зарлага</string>
+    <string name="add_expense">Зарлага нэмэх</string>
 </resources>
