@@ -41,6 +41,7 @@ dependencies {
     implementation(Libraries.Compose.uiTooling)
     implementation(Libraries.Compose.uiToolingPreview)
     implementation(Libraries.Compose.foundation)
+    implementation(Libraries.Compose.materialIcons)
     implementation(Libraries.Compose.material3)
     implementation(Libraries.Compose.material3WindowSizeClass)
     implementation(Libraries.Compose.constraintLayout)

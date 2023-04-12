@@ -30,6 +30,7 @@ object Libraries {
         const val uiTooling = "androidx.compose.ui:ui-tooling"
         const val uiToolingPreview = "androidx.compose.ui:ui-tooling-preview"
         const val foundation = "androidx.compose.foundation:foundation"
+        const val materialIcons = "androidx.compose.material:material-icons-extended"
         const val material3 = "androidx.compose.material3:material3:${Versions.material3}"
         const val material3WindowSizeClass =
             "androidx.compose.material3:material3-window-size-class:${Versions.material3}"
