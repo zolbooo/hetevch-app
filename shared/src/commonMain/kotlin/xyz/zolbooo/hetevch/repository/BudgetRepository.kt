@@ -10,8 +10,9 @@ data class Budget(
 )
 
 interface IBudgetRepository {
-    suspend fun getLatest(): Budget?
-    suspend fun setBudget(amount: Long, durationInDays: Int)
+    fun getLatest(): Budget?
+    fun setBudget(amount: Long, durationInDays: Int)
+    fun updateAmount(newAmount: Long)
 }
 
 class BudgetRepository(
@@ -20,7 +21,7 @@ class BudgetRepository(
     private val amountKey = "budget-amount"
     private val endDateKey = "budget-end-date"
 
-    override suspend fun getLatest(): Budget? {
+    override fun getLatest(): Budget? {
         val isBudgetCreated = settings.hasKey(amountKey) && settings.hasKey(endDateKey)
         if (!isBudgetCreated) {
             return null
@@ -31,7 +32,7 @@ class BudgetRepository(
         )
     }
 
-    override suspend fun setBudget(amount: Long, durationInDays: Int) {
+    override fun setBudget(amount: Long, durationInDays: Int) {
         val timeZone = TimeZone.currentSystemDefault()
         val endDayTimestamp = Clock.System.now()
             .toLocalDateTime(timeZone)
@@ -41,5 +42,9 @@ class BudgetRepository(
             .epochSeconds
         settings[amountKey] = amount
         settings[endDateKey] = endDayTimestamp
+    }
+
+    override fun updateAmount(newAmount: Long) {
+        settings[amountKey] = newAmount
     }
 }
