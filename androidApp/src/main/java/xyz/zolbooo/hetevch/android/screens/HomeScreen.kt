@@ -16,11 +16,18 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import xyz.zolbooo.hetevch.android.R
 import xyz.zolbooo.hetevch.android.ui.HetevchTheme
+import xyz.zolbooo.hetevch.android.utils.formatMNT
 import xyz.zolbooo.hetevch.repository.Expenses
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(expenses: List<Expenses>, onAddPress: () -> Unit) {
+fun HomeScreen(
+    currentDailyBudget: Long,
+    budgetGoalAmount: Long,
+    budgetDurationInDays: Int,
+    expenses: List<Expenses>,
+    onAddPress: () -> Unit,
+) {
     Scaffold(
         floatingActionButton = {
             ExtendedFloatingActionButton(
@@ -52,8 +59,11 @@ fun HomeScreen(expenses: List<Expenses>, onAddPress: () -> Unit) {
                             fontWeight = FontWeight.Bold,
                         )
                         Text(
-                            // TODO: Render budget summary
-                            "₮5000 / 2 өдөр",
+                            stringResource(
+                                R.string.budget_goal,
+                                budgetGoalAmount.formatMNT(),
+                                budgetDurationInDays,
+                            ),
                             style = MaterialTheme.typography.titleSmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
@@ -64,8 +74,7 @@ fun HomeScreen(expenses: List<Expenses>, onAddPress: () -> Unit) {
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
                         Text(
-                            // TODO: Render remaining budget for today
-                            text = "₮2,500",
+                            text = currentDailyBudget.formatMNT(),
                             style = MaterialTheme.typography.displayLarge,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                             fontWeight = FontWeight.Bold,
@@ -89,7 +98,7 @@ fun HomeScreen(expenses: List<Expenses>, onAddPress: () -> Unit) {
                 ) {
                     Column(Modifier.padding(horizontal = 20.dp, vertical = 15.dp)) {
                         Text(
-                            text = it.amount.toString(),
+                            text = it.amount.formatMNT(),
                             color = MaterialTheme.colorScheme.onPrimaryContainer,
                             style = MaterialTheme.typography.bodyLarge,
                             fontWeight = FontWeight.Bold,
@@ -122,6 +131,9 @@ private val previewExpenses = List(100) {
 fun HomeScreenPreview() {
     HetevchTheme {
         HomeScreen(
+            currentDailyBudget = 2_500,
+            budgetGoalAmount = 5_000,
+            budgetDurationInDays = 3,
             expenses = previewExpenses,
             onAddPress = {},
         )
@@ -133,6 +145,9 @@ fun HomeScreenPreview() {
 fun HomeScreenPreviewDarkMode() {
     HetevchTheme {
         HomeScreen(
+            currentDailyBudget = 15_000,
+            budgetGoalAmount = 20_000,
+            budgetDurationInDays = 14,
             expenses = previewExpenses,
             onAddPress = {},
         )

@@ -12,6 +12,7 @@
     <string name="greeting_evening">Оройн мэнд</string>
     <string name="greeting_night">Шөнийн мэнд</string>
     <string name="today_budget">Өнөөдрийн төсөв</string>
+    <string name="budget_goal">%s / %d өдөр</string>
     <string name="expenses">Зарлага</string>
     <string name="add_expense">Зарлага нэмэх</string>
     <!-- Add expense screen -->
