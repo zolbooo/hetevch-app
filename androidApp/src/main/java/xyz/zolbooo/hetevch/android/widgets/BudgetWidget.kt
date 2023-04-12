@@ -26,6 +26,7 @@ fun BudgetWidget(onSave: (Long, Int) -> Unit, modifier: Modifier = Modifier) {
         Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
             OutlinedTextField(
                 label = { Text(text = stringResource(R.string.budget_amount)) },
+                // TODO: Apply visual transformation
                 value = amount,
                 onValueChange = { amount = it },
                 keyboardOptions = KeyboardOptions(
@@ -42,7 +43,7 @@ fun BudgetWidget(onSave: (Long, Int) -> Unit, modifier: Modifier = Modifier) {
             ) {
                 OutlinedTextField(
                     label = { Text(text = stringResource(R.string.budget_duration)) },
-                    value = if (duration == null) "" else "--",
+                    value = duration?.let { stringResource(R.string.duration, it) } ?: "",
                     onValueChange = {},
                     readOnly = true,
                     trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },

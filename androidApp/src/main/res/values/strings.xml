@@ -4,6 +4,7 @@
     <!-- Budget widget -->
     <string name="budget_amount">Төсөв</string>
     <string name="budget_duration">Хугацаа</string>
+    <string name="duration">%d өдөр</string>
     <string name="budget_daily_amount">Өдрийн төсөв</string>
     <string name="budget_save">Хадгалах</string>
     <!-- Home screen -->
