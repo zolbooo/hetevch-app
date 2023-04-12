@@ -14,7 +14,6 @@ class ExpenseRepositoryTest : RobolectricTests() {
     private lateinit var databaseDriver: SqlDriver
     private lateinit var database: Database
 
-    private lateinit var budgetRepository: BudgetRepository
     private lateinit var expenseRepository: ExpenseRepository
 
     @BeforeTest
@@ -22,32 +21,22 @@ class ExpenseRepositoryTest : RobolectricTests() {
         databaseDriver = getTestDriverFactory().createDriver()
         database = Database(databaseDriver)
 
-        budgetRepository = BudgetRepository(database)
         expenseRepository = ExpenseRepository(database)
     }
 
     @AfterTest
     fun teardown() {
         database.expenseQueries.deleteAll()
-        database.budgetQueries.deleteAll()
         databaseDriver.close()
     }
 
     @Test
     fun recordExpense() = runTest {
-        budgetRepository.setBudget(10_000, 3)
-
         expenseRepository.recordExpense(5_000)
-
-        val budget = budgetRepository.getLatest()
-        assertNotNull(budget)
-        assertEquals(5_000, budget.balance)
     }
 
     @Test
     fun removeExpense() = runTest {
-        budgetRepository.setBudget(10_000, 3)
-
         expenseRepository.recordExpense(5_000)
         expenseRepository.recordExpense(4_000)
 
@@ -56,8 +45,6 @@ class ExpenseRepositoryTest : RobolectricTests() {
 
         val updatedExpenses = expenseRepository.getAll()
         assertEquals(updatedExpenses[0].amount, 4_000)
-        val budget = budgetRepository.getLatest()
-        assertEquals(6_000, budget!!.balance)
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
@@ -67,7 +54,6 @@ class ExpenseRepositoryTest : RobolectricTests() {
             database,
             UnconfinedTestDispatcher(testScheduler),
         )
-        budgetRepository.setBudget(10_000, 3)
 
         val expenses = mutableListOf<List<Expenses>>()
         backgroundScope.launch {
