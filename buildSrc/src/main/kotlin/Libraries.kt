@@ -14,6 +14,7 @@ object Versions {
     const val material3 = "1.0.1"
     const val activityCompose = "1.7.0"
     const val composeNavigation = "2.5.3"
+    const val constraintLayoutCompose = "1.0.1"
 
     const val testKtx = "1.5.0"
     const val robolectric = "4.9"
@@ -30,8 +31,12 @@ object Libraries {
         const val uiToolingPreview = "androidx.compose.ui:ui-tooling-preview"
         const val foundation = "androidx.compose.foundation:foundation"
         const val material3 = "androidx.compose.material3:material3:${Versions.material3}"
-        const val material3WindowSizeClass = "androidx.compose.material3:material3-window-size-class:${Versions.material3}"
-        const val navigation = "androidx.navigation:navigation-compose:${Versions.composeNavigation}"
+        const val material3WindowSizeClass =
+            "androidx.compose.material3:material3-window-size-class:${Versions.material3}"
+        const val navigation =
+            "androidx.navigation:navigation-compose:${Versions.composeNavigation}"
+        const val constraintLayout =
+            "androidx.constraintlayout:constraintlayout-compose:${Versions.constraintLayoutCompose}"
     }
 
     object Common {
@@ -47,8 +52,10 @@ object Libraries {
 
     object UnitTests {
         object Common {
-            const val coroutinesTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
+            const val coroutinesTest =
+                "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutines}"
         }
+
         object Android {
             const val testKtx = "androidx.test:core-ktx:${Versions.testKtx}"
             const val robolectric = "org.robolectric:robolectric:${Versions.robolectric}"
