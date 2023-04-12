@@ -5,6 +5,7 @@ object Versions {
 
     const val coroutines = "1.7.0-Beta"
     const val datetime = "0.4.0"
+    const val settings = "1.0.0"
 
     const val koin = "3.4.0"
 
@@ -49,6 +50,8 @@ object Libraries {
 
         const val sqlDelightCoroutinesExtension =
             "app.cash.sqldelight:coroutines-extensions:${Versions.sqlDelight}"
+
+        const val settings = "com.russhwolf:multiplatform-settings:${Versions.settings}"
     }
 
     object UnitTests {
