@@ -49,4 +49,6 @@ dependencies {
 
     implementation(Libraries.activityCompose)
     implementation(Libraries.koinAndroid)
+
+    implementation(Libraries.Android.splashScreen)
 }

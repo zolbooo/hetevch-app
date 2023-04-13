@@ -10,8 +10,9 @@ object Versions {
     const val koin = "3.4.0"
 
     const val sqlDelight = "2.0.0-alpha05"
-    const val composeBom = "2023.03.00"
+    const val splashScreen = "1.0.0"
 
+    const val composeBom = "2023.03.00"
     const val material3 = "1.0.1"
     const val activityCompose = "1.7.0"
     const val composeNavigation = "2.5.3"
@@ -67,6 +68,7 @@ object Libraries {
     }
 
     object Android {
+        const val splashScreen = "androidx.core:core-splashscreen:${Versions.splashScreen}"
         const val sqlDelight = "app.cash.sqldelight:android-driver:${Versions.sqlDelight}"
     }
 
