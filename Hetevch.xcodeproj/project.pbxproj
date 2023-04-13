@@ -11,6 +11,12 @@
 		ED9A231D29DFC55900124F17 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED9A231C29DFC55900124F17 /* ContentView.swift */; };
 		ED9A231F29DFC55C00124F17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED9A231E29DFC55C00124F17 /* Assets.xcassets */; };
 		ED9A232229DFC55C00124F17 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED9A232129DFC55C00124F17 /* Preview Assets.xcassets */; };
+		EDC0CEF529E05DC6001E1BCB /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC0CEF429E05DC6001E1BCB /* HomeView.swift */; };
+		EDC0CEF729E05E10001E1BCB /* PlusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC0CEF629E05E10001E1BCB /* PlusView.swift */; };
+		EDC0CEF929E05E38001E1BCB /* GearView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC0CEF829E05E38001E1BCB /* GearView.swift */; };
+		EDC0CF1829E06D5E001E1BCB /* Inter-VariableFont_slnt,wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EDC0CF1729E06D5E001E1BCB /* Inter-VariableFont_slnt,wght.ttf */; };
+		EDC0CF1B29E07342001E1BCB /* OutcomeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDC0CF1A29E07342001E1BCB /* OutcomeCard.swift */; };
+		EDE92A6B29E1B54100B38B59 /* Numpad.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE92A6A29E1B54100B38B59 /* Numpad.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +25,13 @@
 		ED9A231C29DFC55900124F17 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		ED9A231E29DFC55C00124F17 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ED9A232129DFC55C00124F17 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		EDC0CEF429E05DC6001E1BCB /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		EDC0CEF629E05E10001E1BCB /* PlusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusView.swift; sourceTree = "<group>"; };
+		EDC0CEF829E05E38001E1BCB /* GearView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GearView.swift; sourceTree = "<group>"; };
+		EDC0CEFB29E067B7001E1BCB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		EDC0CF1729E06D5E001E1BCB /* Inter-VariableFont_slnt,wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Inter-VariableFont_slnt,wght.ttf"; path = "../../../../Library/Fonts/Inter-VariableFont_slnt,wght.ttf"; sourceTree = "<group>"; };
+		EDC0CF1A29E07342001E1BCB /* OutcomeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutcomeCard.swift; sourceTree = "<group>"; };
+		EDE92A6A29E1B54100B38B59 /* Numpad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Numpad.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +64,12 @@
 		ED9A231929DFC55900124F17 /* Hetevch */ = {
 			isa = PBXGroup;
 			children = (
+				EDC0CEFB29E067B7001E1BCB /* Info.plist */,
+				EDC0CF1729E06D5E001E1BCB /* Inter-VariableFont_slnt,wght.ttf */,
 				ED9A231A29DFC55900124F17 /* HetevchApp.swift */,
 				ED9A231C29DFC55900124F17 /* ContentView.swift */,
+				EDC0CF1929E0732A001E1BCB /* Components */,
+				EDC0CEF329E05DB5001E1BCB /* Views */,
 				ED9A231E29DFC55C00124F17 /* Assets.xcassets */,
 				ED9A232029DFC55C00124F17 /* Preview Content */,
 			);
@@ -65,6 +82,25 @@
 				ED9A232129DFC55C00124F17 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		EDC0CEF329E05DB5001E1BCB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EDC0CEF429E05DC6001E1BCB /* HomeView.swift */,
+				EDC0CEF629E05E10001E1BCB /* PlusView.swift */,
+				EDC0CEF829E05E38001E1BCB /* GearView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		EDC0CF1929E0732A001E1BCB /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				EDC0CF1A29E07342001E1BCB /* OutcomeCard.swift */,
+				EDE92A6A29E1B54100B38B59 /* Numpad.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +119,8 @@
 			dependencies = (
 			);
 			name = Hetevch;
+			packageProductDependencies = (
+			);
 			productName = Hetevch;
 			productReference = ED9A231729DFC55900124F17 /* Hetevch.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +149,8 @@
 				Base,
 			);
 			mainGroup = ED9A230E29DFC55800124F17;
+			packageReferences = (
+			);
 			productRefGroup = ED9A231829DFC55900124F17 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -126,6 +166,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED9A232229DFC55C00124F17 /* Preview Assets.xcassets in Resources */,
+				EDC0CF1829E06D5E001E1BCB /* Inter-VariableFont_slnt,wght.ttf in Resources */,
 				ED9A231F29DFC55C00124F17 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,7 +178,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EDC0CF1B29E07342001E1BCB /* OutcomeCard.swift in Sources */,
+				EDE92A6B29E1B54100B38B59 /* Numpad.swift in Sources */,
+				EDC0CEF929E05E38001E1BCB /* GearView.swift in Sources */,
 				ED9A231D29DFC55900124F17 /* ContentView.swift in Sources */,
+				EDC0CEF729E05E10001E1BCB /* PlusView.swift in Sources */,
+				EDC0CEF529E05DC6001E1BCB /* HomeView.swift in Sources */,
 				ED9A231B29DFC55900124F17 /* HetevchApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -270,6 +316,7 @@
 				DEVELOPMENT_TEAM = 693D55AL6X;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Hetevch/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -299,6 +346,7 @@
 				DEVELOPMENT_TEAM = 693D55AL6X;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Hetevch/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
