@@ -10,6 +10,7 @@ data class Budget(
 )
 
 interface IBudgetRepository {
+    fun hasBudget(): Boolean
     fun getLatest(): Budget?
     fun setBudget(amount: Long, durationInDays: Int)
     fun updateAmount(newAmount: Long)
@@ -20,10 +21,11 @@ class BudgetRepository(
 ) : IBudgetRepository {
     private val amountKey = "budget-amount"
     private val endDateKey = "budget-end-date"
+    override fun hasBudget(): Boolean =
+        settings.hasKey(amountKey) && settings.hasKey(endDateKey)
 
     override fun getLatest(): Budget? {
-        val isBudgetCreated = settings.hasKey(amountKey) && settings.hasKey(endDateKey)
-        if (!isBudgetCreated) {
+        if (!hasBudget()) {
             return null
         }
         return Budget(
