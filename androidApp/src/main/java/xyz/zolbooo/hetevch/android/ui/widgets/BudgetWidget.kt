@@ -15,6 +15,7 @@ import xyz.zolbooo.hetevch.android.R
 import xyz.zolbooo.hetevch.android.ui.components.BudgetCard
 import xyz.zolbooo.hetevch.android.ui.HetevchTheme
 
+// TODO: Move to screen and create a scaffold for snackbars
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BudgetWidget(onSave: (Long, Int) -> Unit, modifier: Modifier = Modifier) {
