@@ -15,10 +15,13 @@ import xyz.zolbooo.hetevch.android.R
 import xyz.zolbooo.hetevch.android.ui.components.BudgetCard
 import xyz.zolbooo.hetevch.android.ui.HetevchTheme
 
-// TODO: Move to screen and create a scaffold for snackbars
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BudgetWidget(onSave: (Long, Int) -> Unit, modifier: Modifier = Modifier) {
+fun BudgetWidget(
+    onSave: (Long, Int) -> Unit,
+    modifier: Modifier = Modifier,
+    onIncorrectInput: () -> Unit = {},
+) {
     var amount by remember { mutableStateOf("") }
     var duration by remember { mutableStateOf<Int?>(null) }
     Column(modifier.padding(20.dp)) {
@@ -81,10 +84,11 @@ fun BudgetWidget(onSave: (Long, Int) -> Unit, modifier: Modifier = Modifier) {
         Button(
             onClick = {
                 val amountAsLong = amount.toLongOrNull()
-                if (amountAsLong != null) {
-                    duration?.let {
-                        onSave(amountAsLong, it)
-                    }
+                val durationValue = duration
+                if (amountAsLong != null && durationValue != null) {
+                    onSave(amountAsLong, durationValue)
+                } else {
+                    onIncorrectInput()
                 }
             },
             modifier = Modifier
