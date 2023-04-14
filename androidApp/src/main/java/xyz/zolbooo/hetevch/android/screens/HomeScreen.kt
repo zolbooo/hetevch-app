@@ -9,6 +9,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -89,6 +90,7 @@ fun HomeScreen(
                     )
                 }
             }
+            // TODO: Add placeholder for empty list
             items(items = expenses, key = { it.id }) {
                 ElevatedCard(
                     modifier = Modifier
@@ -118,18 +120,20 @@ fun HomeScreen(
     }
 }
 
-private val previewExpenses = List(100) {
-    Expenses(
-        id = it.toLong(),
-        amount = 10_000,
-        date = 1681236069,
-    )
-}
 
 @Preview(name = "Light mode")
 @Preview(name = "Dark mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun HomeScreenPreview() {
+    val previewExpenses = remember {
+        List(100) {
+            Expenses(
+                id = it.toLong(),
+                amount = 10_000,
+                date = 1681236069,
+            )
+        }
+    }
     HetevchTheme {
         HomeScreen(
             currentDailyBudget = 2_500,
