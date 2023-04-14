@@ -1,4 +1,4 @@
-package xyz.zolbooo.hetevch.android.components
+package xyz.zolbooo.hetevch.android.ui.components
 
 import android.content.res.Configuration
 import androidx.compose.foundation.clickable

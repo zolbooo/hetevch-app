@@ -1,4 +1,4 @@
-package xyz.zolbooo.hetevch.android.screens
+package xyz.zolbooo.hetevch.android.ui.screens
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.*
@@ -12,8 +12,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import xyz.zolbooo.hetevch.android.R
-import xyz.zolbooo.hetevch.android.components.KeyPad
-import xyz.zolbooo.hetevch.android.components.KeyPadButton
+import xyz.zolbooo.hetevch.android.ui.components.KeyPad
+import xyz.zolbooo.hetevch.android.ui.components.KeyPadButton
 import xyz.zolbooo.hetevch.android.ui.HetevchTheme
 import xyz.zolbooo.hetevch.android.utils.formatMNT
 import kotlin.math.max

@@ -1,4 +1,4 @@
-package xyz.zolbooo.hetevch.android.screens
+package xyz.zolbooo.hetevch.android.ui.screens
 
 import android.content.res.Configuration
 import androidx.compose.foundation.background

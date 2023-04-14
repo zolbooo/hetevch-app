@@ -1,4 +1,4 @@
-package xyz.zolbooo.hetevch.android.widgets
+package xyz.zolbooo.hetevch.android.ui.widgets
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.*
@@ -12,7 +12,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import xyz.zolbooo.hetevch.android.R
-import xyz.zolbooo.hetevch.android.components.BudgetCard
+import xyz.zolbooo.hetevch.android.ui.components.BudgetCard
 import xyz.zolbooo.hetevch.android.ui.HetevchTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
