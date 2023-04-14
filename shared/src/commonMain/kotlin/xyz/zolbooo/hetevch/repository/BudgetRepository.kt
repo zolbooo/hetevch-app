@@ -6,7 +6,7 @@ import kotlinx.datetime.*
 
 data class Budget(
     val amount: Long,
-    val endTimestamp: Long,
+    val end: LocalDate,
 )
 
 interface IBudgetRepository {
@@ -30,7 +30,10 @@ class BudgetRepository(
         }
         return Budget(
             settings.getLong(amountKey, 0),
-            settings.getLong(endDateKey, 0)
+            Instant
+                .fromEpochSeconds(settings.getLong(endDateKey, 0))
+                .toLocalDateTime(TimeZone.currentSystemDefault())
+                .date,
         )
     }
 
