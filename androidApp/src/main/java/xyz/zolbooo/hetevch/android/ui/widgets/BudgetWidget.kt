@@ -81,7 +81,11 @@ fun BudgetWidget(
                 modifier = Modifier.fillMaxWidth(),
             )
         }
+        val buttonIsEnabled = remember(amount, duration) {
+            (amount.toLongOrNull() != null) && (duration != null)
+        }
         Button(
+            enabled = buttonIsEnabled,
             onClick = {
                 val amountAsLong = amount.toLongOrNull()
                 val durationValue = duration
