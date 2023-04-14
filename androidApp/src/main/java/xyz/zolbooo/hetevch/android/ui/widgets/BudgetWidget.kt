@@ -60,11 +60,11 @@ fun BudgetWidget(
                     expanded = expanded,
                     onDismissRequest = { expanded = false },
                 ) {
-                    repeat(45) {
+                    for (days in 1..45) {
                         DropdownMenuItem(
-                            text = { Text(it.toString()) },
+                            text = { Text(days.toString()) },
                             onClick = {
-                                duration = it
+                                duration = days
                                 expanded = false
                             },
                             contentPadding = ExposedDropdownMenuDefaults.ItemContentPadding,
