@@ -15,6 +15,7 @@ val appModule = module {
 val repositoryModule = module {
     single<IBudgetRepository> { BudgetRepository(get()) }
     single<IExpenseRepository> { ExpenseRepository(get()) }
+    single<ISettingsRepository> { SettingsRepository(get()) }
 }
 val dispatcherModule = module {
     factory { Dispatchers.Default }
