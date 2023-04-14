@@ -134,6 +134,7 @@ fun CongratulationsScreen(
 }
 
 @Preview(name = "Light mode")
+@Preview(name = "Dark mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun CongratulationsScreenPreview() {
     HetevchTheme {
@@ -142,22 +143,6 @@ fun CongratulationsScreenPreview() {
             estimatedNewBudgetAmount = 3000,
             budgetDurationInDays = 10,
             estimatedNewTodayBudgetAmount = 30_000,
-            onAddToTotalBudgetPress = {},
-            onAddToDailyBudgetPress = {},
-            onSavePress = {}
-        )
-    }
-}
-
-@Preview(name = "Dark mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-fun CongratulationsScreenPreviewDarkMode() {
-    HetevchTheme {
-        CongratulationsScreen(
-            savedAmount = 500,
-            estimatedNewBudgetAmount = 1000,
-            budgetDurationInDays = 3,
-            estimatedNewTodayBudgetAmount = 3000,
             onAddToTotalBudgetPress = {},
             onAddToDailyBudgetPress = {},
             onSavePress = {}

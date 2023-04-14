@@ -127,6 +127,7 @@ private val previewExpenses = List(100) {
 }
 
 @Preview(name = "Light mode")
+@Preview(name = "Dark mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun HomeScreenPreview() {
     HetevchTheme {
@@ -134,20 +135,6 @@ fun HomeScreenPreview() {
             currentDailyBudget = 2_500,
             budgetGoalAmount = 5_000,
             budgetDurationInDays = 3,
-            expenses = previewExpenses,
-            onAddPress = {},
-        )
-    }
-}
-
-@Preview(name = "Dark mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-fun HomeScreenPreviewDarkMode() {
-    HetevchTheme {
-        HomeScreen(
-            currentDailyBudget = 15_000,
-            budgetGoalAmount = 20_000,
-            budgetDurationInDays = 14,
             expenses = previewExpenses,
             onAddPress = {},
         )

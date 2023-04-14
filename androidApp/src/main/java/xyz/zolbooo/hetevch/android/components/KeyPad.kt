@@ -81,22 +81,12 @@ fun KeyPad(onPress: (KeyPadButton) -> Unit) {
 }
 
 @Preview(name = "Light mode")
+@Preview(name = "Dark mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun KeyPadPreview() {
     HetevchTheme {
         Box(Modifier.padding(20.dp)) {
             KeyPad(onPress = {})
-        }
-    }
-}
-
-@Preview(name = "Dark mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-fun KeyPadPreviewDarkMode() {
-    HetevchTheme {
-        Box(Modifier.padding(20.dp)) {
-            KeyPad(onPress = {})
-
         }
     }
 }

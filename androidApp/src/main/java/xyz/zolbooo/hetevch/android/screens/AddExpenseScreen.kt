@@ -96,17 +96,10 @@ fun AddExpenseScreen(balance: Long, onAddExpense: (Long) -> Unit, onBackPress: (
 }
 
 @Preview(name = "Light mode")
+@Preview(name = "Dark mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun AddExpenseScreenPreview() {
     HetevchTheme {
         AddExpenseScreen(balance = 12_000L, onAddExpense = {}, onBackPress = {})
-    }
-}
-
-@Preview(name = "Dark mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-fun AddExpenseScreenPreviewDarkMode() {
-    HetevchTheme {
-        AddExpenseScreen(balance = 20_000L, onAddExpense = {}, onBackPress = {})
     }
 }

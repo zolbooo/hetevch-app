@@ -51,21 +51,9 @@ fun BudgetCard(amount: Long, modifier: Modifier = Modifier) {
 }
 
 @Preview(name = "Light mode")
-@Composable
-fun BudgetCardPreview() {
-    HetevchTheme {
-        BudgetCard(
-            amount = 380_000L,
-            modifier = Modifier
-                .width(350.dp)
-                .height(150.dp),
-        )
-    }
-}
-
 @Preview(name = "Dark mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun BudgetCardPreviewDarkMode() {
+fun BudgetCardPreview() {
     HetevchTheme {
         BudgetCard(
             amount = 380_000L,
