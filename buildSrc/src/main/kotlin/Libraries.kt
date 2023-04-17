@@ -11,6 +11,8 @@ object Versions {
     const val koin = "3.4.0"
 
     const val sqlDelight = "2.0.0-alpha05"
+    const val datastore = "1.0.0"
+
     const val splashScreen = "1.0.0"
 
     const val composeBom = "2023.04.00"
@@ -73,6 +75,7 @@ object Libraries {
         const val splashScreen = "androidx.core:core-splashscreen:${Versions.splashScreen}"
         const val desugaring = "com.android.tools:desugar_jdk_libs:${Versions.desugaring}"
         const val sqlDelight = "app.cash.sqldelight:android-driver:${Versions.sqlDelight}"
+        const val datastore = "androidx.datastore:datastore-preferences:${Versions.datastore}"
         const val settingsDatastore =
             "com.russhwolf:multiplatform-settings-datastore:${Versions.settings}"
     }

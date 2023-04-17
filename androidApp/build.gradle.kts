@@ -57,6 +57,4 @@ dependencies {
     implementation(Libraries.koinAndroid)
 
     implementation(Libraries.Android.splashScreen)
-
-    implementation(Libraries.Android.settingsDatastore)
 }

@@ -42,6 +42,8 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation(Libraries.Android.sqlDelight)
+                implementation(Libraries.Android.datastore)
+                implementation(Libraries.Android.settingsDatastore)
             }
         }
         val androidUnitTest by getting {
