@@ -43,7 +43,7 @@ class InitHelper : KoinComponent {
         val today = clock.now().toLocalDateTime(timezone).date
         val lastOpenDate = settingsRepository.getLastOpenDate().toLocalDateTime(timezone).date
         return when {
-            budget.end >= today -> BudgetStatus.Ended
+            today >= budget.end -> BudgetStatus.Ended
             lastOpenDate < today -> BudgetStatus.MoneySaved
             else -> BudgetStatus.Ongoing
         }
