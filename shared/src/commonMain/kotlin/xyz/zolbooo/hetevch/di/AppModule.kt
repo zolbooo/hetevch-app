@@ -22,7 +22,8 @@ val appModule = module {
     }
 }
 val repositoryModule = module {
-    single<IBudgetRepository> { BudgetRepository(get()) }
+    @OptIn(ExperimentalSettingsApi::class)
+    single<IBudgetRepository> { BudgetRepository(get(), get()) }
     single<IExpenseRepository> { ExpenseRepository(get()) }
     single<ISettingsRepository> { SettingsRepository(get()) }
 }

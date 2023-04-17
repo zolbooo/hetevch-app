@@ -1,7 +1,12 @@
 package xyz.zolbooo.hetevch.repository
 
+import com.russhwolf.settings.ExperimentalSettingsApi
 import com.russhwolf.settings.Settings
+import com.russhwolf.settings.coroutines.FlowSettings
 import com.russhwolf.settings.set
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.map
 import kotlinx.datetime.*
 
 data class Budget(
@@ -13,12 +18,15 @@ data class Budget(
 interface IBudgetRepository {
     fun hasBudget(): Boolean
     fun getLatest(): Budget?
+    fun watchLatest(): Flow<Budget>
     fun setBudget(amount: Long, durationInDays: Int)
     fun updateAmount(newAmount: Long)
 }
 
+@OptIn(ExperimentalSettingsApi::class)
 class BudgetRepository(
     private val settings: Settings,
+    private val flowSettings: FlowSettings,
     private val clock: Clock = Clock.System,
 ) : IBudgetRepository {
     private val amountKey = "budget-amount"
@@ -40,6 +48,21 @@ class BudgetRepository(
                 .date,
         )
     }
+
+    override fun watchLatest(): Flow<Budget> =
+        combine(
+            flowSettings.getLongFlow(amountKey, 0),
+            flowSettings.getLongFlow(dailyAmountKey, 0),
+            flowSettings.getLongFlow(endDateKey, 0).map { endDate ->
+                Instant
+                    .fromEpochSeconds(endDate)
+                    .toLocalDateTime(TimeZone.UTC)
+                    .date
+            }
+        )
+        { amount, dailyAmount, endDate ->
+            Budget(amount, dailyAmount, endDate)
+        }
 
     override fun setBudget(amount: Long, durationInDays: Int) {
         val timeZone = TimeZone.currentSystemDefault()
