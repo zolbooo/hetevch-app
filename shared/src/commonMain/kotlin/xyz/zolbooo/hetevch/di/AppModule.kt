@@ -1,6 +1,7 @@
 package xyz.zolbooo.hetevch.di
 
 import kotlinx.coroutines.Dispatchers
+import kotlinx.datetime.Clock
 import org.koin.core.context.startKoin
 import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.module
@@ -20,6 +21,9 @@ val repositoryModule = module {
 val dispatcherModule = module {
     factory { Dispatchers.Default }
 }
+val clockModule = module {
+    single { Clock.System }
+}
 
 fun initKoin(appDeclaration: KoinAppDeclaration = {}) = startKoin {
     appDeclaration()
@@ -27,6 +31,7 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}) = startKoin {
         repositoryModule,
         appModule,
         dispatcherModule,
+        clockModule,
         platformModule(),
     )
 }
