@@ -14,6 +14,19 @@ import androidx.compose.ui.unit.dp
 import xyz.zolbooo.hetevch.android.R
 import xyz.zolbooo.hetevch.android.ui.components.BudgetCard
 import xyz.zolbooo.hetevch.android.ui.HetevchTheme
+import java.time.Clock
+import java.time.format.DateTimeFormatter
+import java.time.temporal.ChronoUnit
+
+@Composable
+fun formatDateFromNow(formatter: DateTimeFormatter, days: Int): String {
+    val clock = Clock.systemDefaultZone()
+    val date = clock.instant()
+        .plus(days.toLong(), ChronoUnit.DAYS)
+        .atZone(clock.zone)
+        .toLocalDate()
+    return "${formatter.format(date)} | ${stringResource(R.string.duration, days)}"
+}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -45,9 +58,10 @@ fun BudgetWidget(
                 expanded = expanded,
                 onExpandedChange = { expanded = !expanded },
             ) {
+                val formatter = remember { DateTimeFormatter.ofPattern("MMM dd") }
                 OutlinedTextField(
                     label = { Text(text = stringResource(R.string.budget_duration)) },
-                    value = duration?.let { stringResource(R.string.duration, it) } ?: "",
+                    value = duration?.let { formatDateFromNow(formatter, it) } ?: "",
                     onValueChange = {},
                     readOnly = true,
                     trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
@@ -62,7 +76,7 @@ fun BudgetWidget(
                 ) {
                     for (days in 1..45) {
                         DropdownMenuItem(
-                            text = { Text(days.toString()) },
+                            text = { Text(text = formatDateFromNow(formatter, days)) },
                             onClick = {
                                 duration = days
                                 expanded = false
