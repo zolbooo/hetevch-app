@@ -50,7 +50,6 @@ dependencies {
     implementation(Libraries.Compose.materialIcons)
     implementation(Libraries.Compose.material3)
     implementation(Libraries.Compose.material3WindowSizeClass)
-    implementation(Libraries.Compose.constraintLayout)
     implementation(Libraries.Compose.navigation)
     implementation(Libraries.Compose.lifecycleViewModelCompose)
 

@@ -17,7 +17,6 @@ object Versions {
     const val material3 = "1.0.1"
     const val activityCompose = "1.7.0"
     const val composeNavigation = "2.5.3"
-    const val constraintLayoutCompose = "1.0.1"
     const val lifecycleViewModelCompose = "2.6.1"
 
     const val testKtx = "1.5.0"
@@ -40,8 +39,6 @@ object Libraries {
             "androidx.compose.material3:material3-window-size-class:${Versions.material3}"
         const val navigation =
             "androidx.navigation:navigation-compose:${Versions.composeNavigation}"
-        const val constraintLayout =
-            "androidx.constraintlayout:constraintlayout-compose:${Versions.constraintLayoutCompose}"
         const val lifecycleViewModelCompose =
             "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.lifecycleViewModelCompose}"
     }
