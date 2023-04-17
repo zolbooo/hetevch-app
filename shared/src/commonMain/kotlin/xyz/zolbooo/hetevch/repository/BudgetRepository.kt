@@ -6,6 +6,7 @@ import kotlinx.datetime.*
 
 data class Budget(
     val amount: Long,
+    val dailyAmount: Long,
     val end: LocalDate,
 )
 
@@ -20,9 +21,10 @@ class BudgetRepository(
     private val settings: Settings,
 ) : IBudgetRepository {
     private val amountKey = "budget-amount"
+    private val dailyAmountKey = "budget-daily-amount"
     private val endDateKey = "budget-end-date"
     override fun hasBudget(): Boolean =
-        settings.hasKey(amountKey) && settings.hasKey(endDateKey)
+        settings.hasKey(amountKey) && settings.hasKey(endDateKey) && settings.hasKey(dailyAmountKey)
 
     override fun getLatest(): Budget? {
         if (!hasBudget()) {
@@ -30,6 +32,7 @@ class BudgetRepository(
         }
         return Budget(
             settings.getLong(amountKey, 0),
+            settings.getLong(dailyAmountKey, 0),
             Instant
                 .fromEpochSeconds(settings.getLong(endDateKey, 0))
                 .toLocalDateTime(TimeZone.currentSystemDefault())
@@ -46,6 +49,7 @@ class BudgetRepository(
             .atStartOfDayIn(timeZone)
             .epochSeconds
         settings[amountKey] = amount
+        settings[dailyAmountKey] = amount / durationInDays
         settings[endDateKey] = endDayTimestamp
     }
 
