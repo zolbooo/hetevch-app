@@ -2,6 +2,7 @@ object Versions {
     const val agp = "7.4.0"
     const val kotlin = "1.8.10"
     const val kotlinCompilerExtensionVersion = "1.4.4"
+    const val desugaring = "2.0.3"
 
     const val coroutines = "1.7.0-Beta"
     const val datetime = "0.4.0"
@@ -69,6 +70,7 @@ object Libraries {
 
     object Android {
         const val splashScreen = "androidx.core:core-splashscreen:${Versions.splashScreen}"
+        const val desugaring = "com.android.tools:desugar_jdk_libs:${Versions.desugaring}"
         const val sqlDelight = "app.cash.sqldelight:android-driver:${Versions.sqlDelight}"
     }
 
