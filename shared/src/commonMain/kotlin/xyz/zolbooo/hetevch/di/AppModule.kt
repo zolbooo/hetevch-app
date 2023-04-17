@@ -22,7 +22,7 @@ val dispatcherModule = module {
     factory { Dispatchers.Default }
 }
 val clockModule = module {
-    single { Clock.System }
+    single<Clock> { Clock.System }
 }
 
 fun initKoin(appDeclaration: KoinAppDeclaration = {}) = startKoin {
