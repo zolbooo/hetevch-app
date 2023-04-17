@@ -1,5 +1,8 @@
 package xyz.zolbooo.hetevch.di
 
+import com.russhwolf.settings.ExperimentalSettingsApi
+import com.russhwolf.settings.coroutines.FlowSettings
+import com.russhwolf.settings.coroutines.toBlockingSettings
 import kotlinx.coroutines.Dispatchers
 import kotlinx.datetime.Clock
 import org.koin.core.context.startKoin
@@ -11,6 +14,11 @@ val appModule = module {
     single {
         val driverFactory = get<DriverFactory>()
         Database(driverFactory.createDriver())
+    }
+    @OptIn(ExperimentalSettingsApi::class)
+    single {
+        val flowSettings = get<FlowSettings>()
+        flowSettings.toBlockingSettings()
     }
 }
 val repositoryModule = module {
