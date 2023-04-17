@@ -16,6 +16,7 @@
     <string name="today_budget">Өнөөдрийн төсөв</string>
     <string name="budget_goal">%s / %d өдөр</string>
     <string name="expenses">Зарлага</string>
+    <string name="no_expenses">Одоогоор зарлага байхгүй байна</string>
     <string name="add_expense">Зарлага нэмэх</string>
     <!-- Add expense screen -->
     <string name="back">Буцах</string>

@@ -4,6 +4,7 @@ import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -20,13 +21,64 @@ import xyz.zolbooo.hetevch.android.ui.HetevchTheme
 import xyz.zolbooo.hetevch.android.utils.formatMNT
 import xyz.zolbooo.hetevch.repository.Expenses
 
+fun LazyListScope.expenseList(loading: Boolean, expenses: List<Expenses>?) {
+    if (loading) {
+        return item {
+            Row(
+                horizontalArrangement = Arrangement.Center,
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                CircularProgressIndicator()
+            }
+        }
+    }
+    checkNotNull(expenses)
+    if (expenses.isEmpty()) {
+        return item {
+            Row(
+                horizontalArrangement = Arrangement.Center,
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                Text(
+                    text = stringResource(R.string.no_expenses),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
+        }
+    }
+    items(items = expenses, key = { it.id }) {
+        ElevatedCard(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 20.dp)
+                .padding(bottom = 5.dp)
+        ) {
+            Column(Modifier.padding(horizontal = 20.dp, vertical = 15.dp)) {
+                Text(
+                    text = it.amount.formatMNT(),
+                    color = MaterialTheme.colorScheme.onPrimaryContainer,
+                    style = MaterialTheme.typography.bodyLarge,
+                    fontWeight = FontWeight.Bold,
+                )
+                Text(
+                    text = "Өнөөдөр, 16:24",
+                    color = MaterialTheme.colorScheme.onPrimaryContainer,
+                    style = MaterialTheme.typography.bodySmall,
+                )
+            }
+        }
+    }
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
     currentDailyBudget: Long,
     budgetGoalAmount: Long,
     budgetDurationInDays: Int,
-    expenses: List<Expenses>,
+    expenses: List<Expenses>?,
+    expensesLoading: Boolean,
     onAddPress: () -> Unit,
 ) {
     Scaffold(
@@ -90,29 +142,7 @@ fun HomeScreen(
                     )
                 }
             }
-            // TODO: Add placeholder for empty list
-            items(items = expenses, key = { it.id }) {
-                ElevatedCard(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 20.dp)
-                        .padding(bottom = 5.dp)
-                ) {
-                    Column(Modifier.padding(horizontal = 20.dp, vertical = 15.dp)) {
-                        Text(
-                            text = it.amount.formatMNT(),
-                            color = MaterialTheme.colorScheme.onPrimaryContainer,
-                            style = MaterialTheme.typography.bodyLarge,
-                            fontWeight = FontWeight.Bold,
-                        )
-                        Text(
-                            text = "Өнөөдөр, 16:24",
-                            color = MaterialTheme.colorScheme.onPrimaryContainer,
-                            style = MaterialTheme.typography.bodySmall,
-                        )
-                    }
-                }
-            }
+            expenseList(loading = expensesLoading, expenses = expenses)
             item {
                 Spacer(Modifier.height(20.dp))
             }
@@ -140,6 +170,39 @@ fun HomeScreenPreview() {
             budgetGoalAmount = 5_000,
             budgetDurationInDays = 3,
             expenses = previewExpenses,
+            expensesLoading = false,
+            onAddPress = {},
+        )
+    }
+}
+
+@Preview(name = "Light mode")
+@Preview(name = "Dark mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+fun HomeScreenLoadingPreview() {
+    HetevchTheme {
+        HomeScreen(
+            currentDailyBudget = 2_500,
+            budgetGoalAmount = 5_000,
+            budgetDurationInDays = 3,
+            expenses = null,
+            expensesLoading = true,
+            onAddPress = {},
+        )
+    }
+}
+
+@Preview(name = "Light mode")
+@Preview(name = "Dark mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Composable
+fun HomeScreenEmptyPreview() {
+    HetevchTheme {
+        HomeScreen(
+            currentDailyBudget = 2_500,
+            budgetGoalAmount = 5_000,
+            budgetDurationInDays = 3,
+            expenses = listOf(),
+            expensesLoading = false,
             onAddPress = {},
         )
     }
