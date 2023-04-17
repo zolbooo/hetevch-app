@@ -15,18 +15,24 @@ import xyz.zolbooo.hetevch.android.R
 import xyz.zolbooo.hetevch.android.ui.components.BudgetCard
 import xyz.zolbooo.hetevch.android.ui.HetevchTheme
 import xyz.zolbooo.hetevch.android.utils.AmountVisualTransformation
+import xyz.zolbooo.hetevch.android.utils.formatMNT
 import java.time.Clock
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
 
 @Composable
-fun formatDateFromNow(formatter: DateTimeFormatter, days: Int): String {
+private fun formatDateFromNow(formatter: DateTimeFormatter, days: Int): String {
     val clock = Clock.systemDefaultZone()
     val date = clock.instant()
         .plus(days.toLong(), ChronoUnit.DAYS)
         .atZone(clock.zone)
         .toLocalDate()
     return "${formatter.format(date)} | ${stringResource(R.string.duration, days)}"
+}
+
+private fun calculateDailyBudget(amount: String, days: Int?): Long? {
+    val amountLong = amount.toLongOrNull() ?: return null
+    return amountLong / (days ?: return null)
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -90,7 +96,7 @@ fun BudgetWidget(
 
             OutlinedTextField(
                 label = { Text(stringResource(R.string.budget_daily_amount)) },
-                value = "",
+                value = calculateDailyBudget(amount, duration)?.formatMNT() ?: "",
                 onValueChange = {},
                 enabled = false,
                 modifier = Modifier.fillMaxWidth(),
