@@ -35,7 +35,7 @@ class BudgetRepository(
             settings.getLong(dailyAmountKey, 0),
             Instant
                 .fromEpochSeconds(settings.getLong(endDateKey, 0))
-                .toLocalDateTime(TimeZone.currentSystemDefault())
+                .toLocalDateTime(TimeZone.UTC)
                 .date,
         )
     }
@@ -46,7 +46,7 @@ class BudgetRepository(
             .toLocalDateTime(timeZone)
             .date
             .plus(durationInDays, DateTimeUnit.DAY)
-            .atStartOfDayIn(timeZone)
+            .atStartOfDayIn(TimeZone.UTC)
             .epochSeconds
         settings[amountKey] = amount
         settings[dailyAmountKey] = amount / durationInDays
