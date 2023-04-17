@@ -12,6 +12,6 @@ fun NavigationRoot(startDestination: String) {
         navController = navController,
         startDestination = startDestination,
     ) {
-        createBudgetScreen()
+        createBudgetScreen(navController)
     }
 }
