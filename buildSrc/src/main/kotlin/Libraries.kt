@@ -1,7 +1,7 @@
 object Versions {
     const val agp = "7.4.0"
-    const val kotlin = "1.8.10"
-    const val kotlinCompilerExtensionVersion = "1.4.4"
+    const val kotlin = "1.8.20"
+    const val kotlinCompilerExtensionVersion = "1.4.5"
     const val desugaring = "2.0.3"
 
     const val coroutines = "1.7.0-Beta"
@@ -13,7 +13,7 @@ object Versions {
     const val sqlDelight = "2.0.0-alpha05"
     const val splashScreen = "1.0.0"
 
-    const val composeBom = "2023.03.00"
+    const val composeBom = "2023.04.00"
     const val activityCompose = "1.7.0"
     const val composeNavigation = "2.5.3"
     const val lifecycleViewModelCompose = "2.6.1"
