@@ -5,20 +5,26 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
 import xyz.zolbooo.hetevch.helpers.HomeHelper
+import xyz.zolbooo.hetevch.repository.Budget
 
 class HomeViewModel : ViewModel() {
     private val homeHelper = HomeHelper()
 
-    private val budget = homeHelper.getBudget()
-
-    val currentDailyBudget = budget.dailyAmount
-    val totalBudget = budget.amount
-    val budgetDuration = homeHelper.getRemainingDaysForBudget(budget)
-
+    val budgetFlow = homeHelper.watchBudget().stateIn(
+        scope = viewModelScope,
+        initialValue = homeHelper.getBudget(),
+        started = SharingStarted.WhileSubscribed(5000L),
+    )
     val expensesFlow = homeHelper.getExpenses()
         .stateIn(
             scope = viewModelScope,
             initialValue = null,
             started = SharingStarted.WhileSubscribed(5000L),
         )
+
+    fun getRemainingDaysForBudget(budget: Budget) = homeHelper.getRemainingDaysForBudget(budget)
+
+    init {
+        homeHelper.updateLastOpenDate()
+    }
 }

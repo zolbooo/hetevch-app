@@ -12,11 +12,12 @@ import xyz.zolbooo.hetevch.android.viewmodels.HomeViewModel
 fun NavGraphBuilder.homeScreen(navController: NavController) {
     composable("home") {
         val homeViewModel = viewModel<HomeViewModel>()
+        val budget by homeViewModel.budgetFlow.collectAsState()
         val expenses by homeViewModel.expensesFlow.collectAsState()
         HomeScreen(
-            currentDailyBudget = homeViewModel.currentDailyBudget,
-            budgetGoalAmount = homeViewModel.totalBudget,
-            budgetDurationInDays = homeViewModel.budgetDuration,
+            currentDailyBudget = budget.dailyAmount,
+            budgetGoalAmount = budget.amount,
+            budgetDurationInDays = homeViewModel.getRemainingDaysForBudget(budget),
             expenses = expenses,
             expensesLoading = expenses == null,
             onAddPress = { navController.navigate("add-expense") },
