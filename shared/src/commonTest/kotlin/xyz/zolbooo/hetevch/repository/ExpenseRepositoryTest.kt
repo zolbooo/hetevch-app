@@ -52,7 +52,7 @@ class ExpenseRepositoryTest : RobolectricTests() {
     fun watchAllExpenses() = runTest {
         val testExpenseRepository = ExpenseRepository(
             database,
-            UnconfinedTestDispatcher(testScheduler),
+            coroutineDispatcher = UnconfinedTestDispatcher(testScheduler),
         )
 
         val expenses = mutableListOf<List<Expenses>>()
