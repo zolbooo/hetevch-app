@@ -18,6 +18,7 @@ object Versions {
     const val activityCompose = "1.7.0"
     const val composeNavigation = "2.5.3"
     const val constraintLayoutCompose = "1.0.1"
+    const val lifecycleViewModelCompose = "2.6.1"
 
     const val testKtx = "1.5.0"
     const val robolectric = "4.9"
@@ -41,6 +42,8 @@ object Libraries {
             "androidx.navigation:navigation-compose:${Versions.composeNavigation}"
         const val constraintLayout =
             "androidx.constraintlayout:constraintlayout-compose:${Versions.constraintLayoutCompose}"
+        const val lifecycleViewModelCompose =
+            "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.lifecycleViewModelCompose}"
     }
 
     object Common {
