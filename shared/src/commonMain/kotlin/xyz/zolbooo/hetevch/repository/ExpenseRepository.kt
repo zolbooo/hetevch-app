@@ -17,12 +17,13 @@ interface IExpenseRepository {
 
 class ExpenseRepository(
     private val database: Database,
+    private val clock: Clock = Clock.System,
     private val coroutineDispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : IExpenseRepository {
     override suspend fun recordExpense(amount: Long) {
         database.expenseQueries.recordExpense(
             amount = amount,
-            date = Clock.System.now().epochSeconds,
+            date = clock.now().epochSeconds,
         )
     }
 

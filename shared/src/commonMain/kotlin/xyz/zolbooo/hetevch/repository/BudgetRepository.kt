@@ -19,6 +19,7 @@ interface IBudgetRepository {
 
 class BudgetRepository(
     private val settings: Settings,
+    private val clock: Clock = Clock.System,
 ) : IBudgetRepository {
     private val amountKey = "budget-amount"
     private val dailyAmountKey = "budget-daily-amount"
@@ -42,7 +43,7 @@ class BudgetRepository(
 
     override fun setBudget(amount: Long, durationInDays: Int) {
         val timeZone = TimeZone.currentSystemDefault()
-        val endDayTimestamp = Clock.System.now()
+        val endDayTimestamp = clock.now()
             .toLocalDateTime(timeZone)
             .date
             .plus(durationInDays, DateTimeUnit.DAY)

@@ -31,6 +31,8 @@ sealed class BudgetStatus {
 }
 
 class InitHelper : KoinComponent {
+    private val clock by inject<Clock>()
+
     private val budgetRepository by inject<IBudgetRepository>()
     private val settingsRepository by inject<ISettingsRepository>()
 
@@ -38,7 +40,7 @@ class InitHelper : KoinComponent {
         val budget = budgetRepository.getLatest() ?: return BudgetStatus.NotCreated
 
         val timezone = TimeZone.currentSystemDefault()
-        val today = Clock.System.now().toLocalDateTime(timezone).date
+        val today = clock.now().toLocalDateTime(timezone).date
         val lastOpenDate = settingsRepository.getLastOpenDate().toLocalDateTime(timezone).date
         return when {
             budget.end >= today -> BudgetStatus.Ended
