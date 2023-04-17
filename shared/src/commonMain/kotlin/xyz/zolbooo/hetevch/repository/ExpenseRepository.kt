@@ -10,7 +10,7 @@ import kotlinx.datetime.Clock
 
 interface IExpenseRepository {
     suspend fun getAll(): List<Expenses>
-    suspend fun watchAll(): Flow<List<Expenses>>
+    fun watchAll(): Flow<List<Expenses>>
     suspend fun recordExpense(amount: Long)
     suspend fun removeExpense(id: Long)
 }
@@ -30,7 +30,7 @@ class ExpenseRepository(
     override suspend fun getAll(): List<Expenses> =
         database.expenseQueries.selectAll().executeAsList()
 
-    override suspend fun watchAll(): Flow<List<Expenses>> =
+    override fun watchAll(): Flow<List<Expenses>> =
         database.expenseQueries.selectAll()
             .asFlow()
             .mapToList(coroutineDispatcher)
