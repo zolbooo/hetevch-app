@@ -14,7 +14,6 @@ object Versions {
     const val splashScreen = "1.0.0"
 
     const val composeBom = "2023.03.00"
-    const val material3 = "1.0.1"
     const val activityCompose = "1.7.0"
     const val composeNavigation = "2.5.3"
     const val lifecycleViewModelCompose = "2.6.1"
@@ -34,9 +33,9 @@ object Libraries {
         const val uiToolingPreview = "androidx.compose.ui:ui-tooling-preview"
         const val foundation = "androidx.compose.foundation:foundation"
         const val materialIcons = "androidx.compose.material:material-icons-extended"
-        const val material3 = "androidx.compose.material3:material3:${Versions.material3}"
+        const val material3 = "androidx.compose.material3:material3"
         const val material3WindowSizeClass =
-            "androidx.compose.material3:material3-window-size-class:${Versions.material3}"
+            "androidx.compose.material3:material3-window-size-class"
         const val navigation =
             "androidx.navigation:navigation-compose:${Versions.composeNavigation}"
         const val lifecycleViewModelCompose =
