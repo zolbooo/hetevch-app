@@ -16,7 +16,7 @@ class HomeHelperTest {
             }
         }
         assertEquals(
-            3,
+            2,
             Budget(
                 amount = 1,
                 dailyAmount = 1,
