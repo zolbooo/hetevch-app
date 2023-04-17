@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Hetevch</string>
     <string name="my_goal">Миний зорилтот төлөвлөгөө</string>
     <!-- Budget widget -->
     <string name="budget_amount">Төсөв</string>
