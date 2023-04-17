@@ -22,7 +22,9 @@ class SettingsRepository(
     private val lastOpenDateKey = "last-open-date"
     private val currencyKey = "app-currency"
 
-    override fun getLastOpenDate() = Instant.fromEpochSeconds(settings.getLong(lastOpenDateKey, 0))
+    override fun getLastOpenDate() =
+        Instant.fromEpochSeconds(settings.getLong(lastOpenDateKey, clock.now().epochSeconds))
+
     override fun updateLastOpenDate() {
         settings.putLong(lastOpenDateKey, clock.now().epochSeconds)
     }
