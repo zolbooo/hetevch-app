@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import xyz.zolbooo.hetevch.android.R
 import xyz.zolbooo.hetevch.android.ui.components.BudgetCard
 import xyz.zolbooo.hetevch.android.ui.HetevchTheme
+import xyz.zolbooo.hetevch.android.utils.AmountVisualTransformation
 import java.time.Clock
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
@@ -43,7 +44,7 @@ fun BudgetWidget(
         Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
             OutlinedTextField(
                 label = { Text(text = stringResource(R.string.budget_amount)) },
-                // TODO: Apply visual transformation
+                visualTransformation = AmountVisualTransformation,
                 value = amount,
                 onValueChange = { amount = it },
                 keyboardOptions = KeyboardOptions(
