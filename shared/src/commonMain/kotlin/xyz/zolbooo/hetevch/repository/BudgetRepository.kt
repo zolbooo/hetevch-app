@@ -7,6 +7,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.datetime.*
+import xyz.zolbooo.hetevch.helpers.calculateRemainingDays
+import kotlin.math.max
 
 data class Budget(
     val amount: Long,
@@ -64,8 +66,14 @@ class BudgetRepository(
         val date = clock.now().epochSeconds
         database.transaction {
             database.expenseQueries.recordExpense(amount, date)
+            val budget = database.budgetQueries.getBudget().executeAsOne()
             database.budgetQueries.updateBudget(
-                amount = amount,
+                expenseAmount = amount,
+                dailyAmount = max(
+                    if (budget.dailyAmount + amount > budget.dailyAmount) {
+                        (budget.amount - amount) / budget.asBudget().calculateRemainingDays(clock)
+                    } else budget.dailyAmount, 0
+                ),
                 date = date,
             )
         }
