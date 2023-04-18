@@ -24,8 +24,7 @@ setBudget {
 }
 
 updateBudget: UPDATE budgets SET
-    amount = amount - :amount,
-    dailyAmount = :dailyAmount,
+    amount = MAX(amount - :amount, 0),
     lastDaySpendings = lastDaySpendings + :amount,
     lastUsedDate = :date
 WHERE id = 1;

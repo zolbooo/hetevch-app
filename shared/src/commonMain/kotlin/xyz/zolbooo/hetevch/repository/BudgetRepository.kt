@@ -7,7 +7,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.datetime.*
-import kotlin.math.max
 
 data class Budget(
     val amount: Long,
@@ -63,10 +62,8 @@ class BudgetRepository(
         val date = clock.now().epochSeconds
         database.transaction {
             database.expenseQueries.recordExpense(amount, date)
-            val budget = database.budgetQueries.getBudget().executeAsOne()
             database.budgetQueries.updateBudget(
-                amount = max(budget.amount - amount, 0),
-                dailyAmount = budget.dailyAmount,
+                amount = amount,
                 date = date,
             )
         }
