@@ -57,6 +57,8 @@ object Libraries {
         const val settings = "com.russhwolf:multiplatform-settings:${Versions.settings}"
         const val settingsCoroutines =
             "com.russhwolf:multiplatform-settings-coroutines:${Versions.settings}"
+        const val settingsSerialization =
+            "com.russhwolf:multiplatform-settings-serialization:${Versions.settings}"
     }
 
     object UnitTests {

@@ -31,6 +31,7 @@ kotlin {
                 implementation(Libraries.Common.sqlDelightCoroutinesExtension)
                 implementation(Libraries.Common.settings)
                 implementation(Libraries.Common.settingsCoroutines)
+                implementation(Libraries.Common.settingsSerialization)
             }
         }
         val commonTest by getting {
