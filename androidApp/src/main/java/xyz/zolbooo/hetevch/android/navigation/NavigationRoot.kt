@@ -3,6 +3,7 @@ package xyz.zolbooo.hetevch.android.navigation
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
+import xyz.zolbooo.hetevch.android.navigation.screens.addExpenseScreen
 import xyz.zolbooo.hetevch.android.navigation.screens.createBudgetScreen
 import xyz.zolbooo.hetevch.android.navigation.screens.homeScreen
 
@@ -15,5 +16,6 @@ fun NavigationRoot(startDestination: String) {
     ) {
         createBudgetScreen(navController)
         homeScreen(navController)
+        addExpenseScreen(navController)
     }
 }
