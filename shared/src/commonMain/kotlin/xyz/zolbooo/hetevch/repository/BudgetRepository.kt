@@ -32,6 +32,10 @@ interface IBudgetRepository {
     fun watchLatest(): Flow<Budget>
     fun setBudget(amount: Long, durationInDays: Int)
     fun recordExpense(amount: Long)
+
+    fun saveMoneyForCurrentDay(savedAmount: Long)
+    fun saveMoneyForBudget(newDailyAmount: Long)
+    fun dismissSavedMoney(savedAmount: Long)
 }
 
 class BudgetRepository(
@@ -77,5 +81,26 @@ class BudgetRepository(
                 date = date,
             )
         }
+    }
+
+    override fun saveMoneyForCurrentDay(savedAmount: Long) {
+        database.budgetQueries.saveMoneyForCurrentDay(
+            savedAmount = savedAmount,
+            date = clock.now().epochSeconds,
+        )
+    }
+
+    override fun saveMoneyForBudget(newDailyAmount: Long) {
+        database.budgetQueries.saveMoneyForBudget(
+            dailyAmount = newDailyAmount,
+            date = clock.now().epochSeconds,
+        )
+    }
+
+    override fun dismissSavedMoney(savedAmount: Long) {
+        database.budgetQueries.dismissSavedMoney(
+            savedAmount = savedAmount,
+            date = clock.now().epochSeconds,
+        )
     }
 }

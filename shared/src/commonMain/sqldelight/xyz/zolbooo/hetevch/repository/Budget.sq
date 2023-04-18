@@ -33,4 +33,22 @@ updateBudget: UPDATE budgets SET
 WHERE id = 1;
 updateLastUsedDate: UPDATE budgets SET lastUsedAt = :date WHERE id = 1;
 
+saveMoneyForCurrentDay: UPDATE budgets SET
+    previousDaySavings = :savedAmount,
+    lastDaySpendings = 0,
+    lastUsedAt = :date
+WHERE id = 1;
+saveMoneyForBudget: UPDATE budgets SET
+    dailyAmount = :dailyAmount,
+    previousDaySavings = 0,
+    lastDaySpendings = 0,
+    lastUsedAt = :date
+WHERE id = 1;
+dismissSavedMoney: UPDATE budgets SET
+    amount = amount - :savedAmount,
+    previousDaySavings = 0,
+    lastDaySpendings = 0,
+    lastUsedAt = :date
+WHERE id = 1;
+
 deleteAll: DELETE FROM budgets;
