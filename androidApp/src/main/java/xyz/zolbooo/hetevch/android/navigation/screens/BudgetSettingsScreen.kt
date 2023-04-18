@@ -11,13 +11,17 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import xyz.zolbooo.hetevch.android.ui.components.BottomBar
 import xyz.zolbooo.hetevch.android.ui.widgets.BudgetWidget
+import xyz.zolbooo.hetevch.android.utils.formatMNT
 import xyz.zolbooo.hetevch.helpers.BudgetSettingsHelper
+import java.time.LocalDate
+import java.time.temporal.ChronoUnit
 
 @OptIn(ExperimentalMaterial3Api::class)
 fun NavGraphBuilder.budgetSettingsScreen(navController: NavController) {
     composable("budget-settings") {
         val budgetSettingsHelper = remember { BudgetSettingsHelper() }
-        // TODO: Provide default values for the screen
+        val budget = remember { budgetSettingsHelper.getBudget() }
+        val budgetDuration = remember { budgetSettingsHelper.currentBudgetDuration(budget) }
         Scaffold(bottomBar = {
             BottomBar(
                 onHomePress = {
@@ -32,7 +36,11 @@ fun NavGraphBuilder.budgetSettingsScreen(navController: NavController) {
             )
         }) { paddingValues ->
             Surface(Modifier.padding(paddingValues)) {
-                BudgetWidget(onSave = budgetSettingsHelper::setBudget)
+                BudgetWidget(
+                    onSave = budgetSettingsHelper::setBudget,
+                    initialAmount = budget.amount.toString(),
+                    initialDuration = budgetDuration,
+                )
             }
         }
     }
