@@ -5,6 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import xyz.zolbooo.hetevch.android.navigation.screens.addExpenseScreen
 import xyz.zolbooo.hetevch.android.navigation.screens.budgetSettingsScreen
+import xyz.zolbooo.hetevch.android.navigation.screens.congratulationsScreen
 import xyz.zolbooo.hetevch.android.navigation.screens.createBudgetScreen
 import xyz.zolbooo.hetevch.android.navigation.screens.homeScreen
 
@@ -17,6 +18,7 @@ fun NavigationRoot(startDestination: String) {
     ) {
         createBudgetScreen(navController)
         homeScreen(navController)
+        congratulationsScreen(navController)
         addExpenseScreen(navController)
         budgetSettingsScreen(navController)
     }
