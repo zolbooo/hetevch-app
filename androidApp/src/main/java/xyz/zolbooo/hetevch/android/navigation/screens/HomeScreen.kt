@@ -8,6 +8,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import xyz.zolbooo.hetevch.android.ui.screens.HomeScreen
 import xyz.zolbooo.hetevch.android.viewmodels.HomeViewModel
+import kotlin.math.max
 
 fun NavGraphBuilder.homeScreen(navController: NavController) {
     composable("home") {
@@ -16,7 +17,7 @@ fun NavGraphBuilder.homeScreen(navController: NavController) {
         val expenses by homeViewModel.expensesFlow.collectAsState()
         HomeScreen(
             timeOfDay = homeViewModel.timeOfDay,
-            currentDailyBudget = budget.dailyAmount,
+            currentDailyBudget = max(budget.dailyAmount - budget.lastDaySpendings, 0),
             budgetGoalAmount = budget.amount,
             budgetDurationInDays = homeViewModel.getRemainingDaysForBudget(budget),
             expenses = expenses,
