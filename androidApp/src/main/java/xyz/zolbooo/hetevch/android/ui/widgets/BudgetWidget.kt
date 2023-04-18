@@ -37,9 +37,11 @@ fun BudgetWidget(
     onSave: (Long, Int) -> Unit,
     modifier: Modifier = Modifier,
     onIncorrectInput: () -> Unit = {},
+    initialAmount: String = "",
+    initialDuration: Int? = null,
 ) {
-    var amount by remember { mutableStateOf("") }
-    var duration by remember { mutableStateOf<Int?>(null) }
+    var amount by remember { mutableStateOf(initialAmount) }
+    var duration by remember { mutableStateOf(initialDuration) }
     Column(modifier.padding(20.dp)) {
         BudgetCard(amount = amount.toLongOrNull() ?: 0)
         Spacer(Modifier.height(20.dp))
