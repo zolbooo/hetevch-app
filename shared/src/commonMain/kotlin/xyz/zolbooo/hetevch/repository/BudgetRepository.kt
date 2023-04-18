@@ -7,6 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.datetime.*
+import kotlin.math.max
 
 data class Budget(
     val amount: Long,
@@ -17,10 +18,7 @@ data class Budget(
 fun Budgets.asBudget() = Budget(
     amount,
     dailyAmount,
-    Instant
-        .fromEpochSeconds(endDate)
-        .toLocalDateTime(TimeZone.UTC)
-        .date,
+    Instant.fromEpochSeconds(endDate).toLocalDateTime(TimeZone.UTC).date,
 )
 
 interface IBudgetRepository {
@@ -42,19 +40,15 @@ class BudgetRepository(
         database.budgetQueries.getBudget().executeAsOneOrNull()?.asBudget()
 
     override fun watchLatest(): Flow<Budget> =
-        database.budgetQueries.getBudget()
-            .asFlow()
-            .mapToOne(coroutineDispatcher)
+        database.budgetQueries.getBudget().asFlow().mapToOne(coroutineDispatcher)
             .map { it.asBudget() }
 
     override fun setBudget(amount: Long, durationInDays: Int) {
         val now = clock.now()
-        val endDayTimestamp = now
-            .toLocalDateTime(TimeZone.currentSystemDefault())
-            .date
-            .plus(durationInDays, DateTimeUnit.DAY)
-            .atStartOfDayIn(TimeZone.UTC)
-            .epochSeconds
+        val endDayTimestamp = now.toLocalDateTime(TimeZone.currentSystemDefault()).date.plus(
+            durationInDays,
+            DateTimeUnit.DAY
+        ).atStartOfDayIn(TimeZone.UTC).epochSeconds
         database.budgetQueries.setBudget(
             amount = amount,
             dailyAmount = amount / durationInDays,
@@ -64,6 +58,15 @@ class BudgetRepository(
     }
 
     override fun recordExpense(amount: Long) {
-        TODO("Not implemented")
+        val date = clock.now().epochSeconds
+        database.transaction {
+            database.expenseQueries.recordExpense(amount, date)
+            val budget = database.budgetQueries.getBudget().executeAsOne()
+            database.budgetQueries.updateBudget(
+                amount = max(budget.amount - amount, 0),
+                dailyAmount = budget.dailyAmount,
+                date = date,
+            )
+        }
     }
 }
