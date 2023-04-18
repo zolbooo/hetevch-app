@@ -30,8 +30,6 @@ kotlin {
                 implementation(Libraries.Common.kotlinxCoroutinesCore)
                 implementation(Libraries.Common.sqlDelightCoroutinesExtension)
                 implementation(Libraries.Common.settings)
-                implementation(Libraries.Common.settingsCoroutines)
-                implementation(Libraries.Common.settingsSerialization)
             }
         }
         val commonTest by getting {
@@ -43,8 +41,6 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation(Libraries.Android.sqlDelight)
-                implementation(Libraries.Android.datastore)
-                implementation(Libraries.Android.settingsDatastore)
             }
         }
         val androidUnitTest by getting {

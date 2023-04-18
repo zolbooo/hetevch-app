@@ -55,10 +55,6 @@ object Libraries {
             "app.cash.sqldelight:coroutines-extensions:${Versions.sqlDelight}"
 
         const val settings = "com.russhwolf:multiplatform-settings:${Versions.settings}"
-        const val settingsCoroutines =
-            "com.russhwolf:multiplatform-settings-coroutines:${Versions.settings}"
-        const val settingsSerialization =
-            "com.russhwolf:multiplatform-settings-serialization:${Versions.settings}"
     }
 
     object UnitTests {
@@ -77,9 +73,6 @@ object Libraries {
         const val splashScreen = "androidx.core:core-splashscreen:${Versions.splashScreen}"
         const val desugaring = "com.android.tools:desugar_jdk_libs:${Versions.desugaring}"
         const val sqlDelight = "app.cash.sqldelight:android-driver:${Versions.sqlDelight}"
-        const val datastore = "androidx.datastore:datastore-preferences:${Versions.datastore}"
-        const val settingsDatastore =
-            "com.russhwolf:multiplatform-settings-datastore:${Versions.settings}"
     }
 
     object iOS {
