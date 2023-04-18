@@ -15,14 +15,13 @@ val appModule = module {
         val driverFactory = get<DriverFactory>()
         Database(driverFactory.createDriver())
     }
-    @OptIn(ExperimentalSettingsApi::class)
+}
+@OptIn(ExperimentalSettingsApi::class)
+val repositoryModule = module {
     single {
         val flowSettings = get<FlowSettings>()
         flowSettings.toBlockingSettings()
     }
-}
-val repositoryModule = module {
-    @OptIn(ExperimentalSettingsApi::class)
     single<IBudgetRepository> { BudgetRepository(get(), get()) }
     single<IExpenseRepository> { ExpenseRepository(get()) }
     single<ISettingsRepository> { SettingsRepository(get()) }
