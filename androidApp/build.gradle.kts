@@ -10,8 +10,8 @@ android {
         applicationId = "xyz.zolbooo.hetevch.android"
         minSdk = 24
         targetSdk = 33
-        versionCode = 1
-        versionName = "0.0.1"
+        versionCode = 2
+        versionName = "0.1.0"
     }
     compileOptions {
         isCoreLibraryDesugaringEnabled = true
