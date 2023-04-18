@@ -20,7 +20,7 @@ data class Budget(
 
 fun Budgets.asBudget() = Budget(
     amount,
-    dailyAmount,
+    dailyAmount + previousDaySavings,
     lastDaySpendings,
     Instant.fromEpochSeconds(lastUsedAt).toLocalDateTime(TimeZone.UTC),
     Instant.fromEpochSeconds(endDate).toLocalDateTime(TimeZone.UTC).date,
