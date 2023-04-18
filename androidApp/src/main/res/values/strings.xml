@@ -34,4 +34,7 @@
     <string name="your_budget_for_today_will_be">Өнөөдрийн шинэ төсөв %s болно.</string>
     <string name="save_money">Далд хийх</string>
     <string name="your_budget_will_not_change">Таны төсөв өөрчлөгдөхгүй</string>
+    <!-- Auxiliary -->
+    <string name="today">Өнөөдөр</string>
+    <string name="yesterday">Өчигдөр</string>
 </resources>
