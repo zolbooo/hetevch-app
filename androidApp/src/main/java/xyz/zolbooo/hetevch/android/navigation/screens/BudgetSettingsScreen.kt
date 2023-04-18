@@ -37,7 +37,14 @@ fun NavGraphBuilder.budgetSettingsScreen(navController: NavController) {
         }) { paddingValues ->
             Surface(Modifier.padding(paddingValues)) {
                 BudgetWidget(
-                    onSave = budgetSettingsHelper::setBudget,
+                    onSave = { amount, duration ->
+                        budgetSettingsHelper.setBudget(amount, duration)
+                        navController.popBackStack(
+                            route = "home",
+                            inclusive = false,
+                            saveState = false,
+                        )
+                    },
                     initialAmount = budget.amount.toString(),
                     initialDuration = budgetDuration,
                 )
