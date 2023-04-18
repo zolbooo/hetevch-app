@@ -16,7 +16,7 @@ fun NavGraphBuilder.addExpenseScreen(navController: NavController) {
         AddExpenseScreen(
             balance = budget.amount,
             onAddExpense = { amount ->
-                addExpenseViewModel.addExpense(budget, amount)
+                addExpenseViewModel.addExpense(amount)
                 navController.popBackStack()
             },
             onBackPress = { navController.popBackStack() },

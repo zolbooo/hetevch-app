@@ -28,7 +28,7 @@ interface IBudgetRepository {
     fun getLatest(): Budget?
     fun watchLatest(): Flow<Budget>
     fun setBudget(amount: Long, durationInDays: Int)
-    fun updateAmount(newAmount: Long)
+    fun recordExpense(amount: Long)
 }
 
 class BudgetRepository(
@@ -63,7 +63,7 @@ class BudgetRepository(
         )
     }
 
-    override fun updateAmount(newAmount: Long) {
+    override fun recordExpense(amount: Long) {
         TODO("Not implemented")
     }
 }

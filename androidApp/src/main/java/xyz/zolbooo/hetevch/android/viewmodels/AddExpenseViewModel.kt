@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
 import xyz.zolbooo.hetevch.helpers.AddExpenseHelper
-import xyz.zolbooo.hetevch.repository.Budget
 
 class AddExpenseViewModel : ViewModel() {
     private val addExpenseHelper = AddExpenseHelper()
@@ -17,5 +16,5 @@ class AddExpenseViewModel : ViewModel() {
             started = SharingStarted.WhileSubscribed(5000L),
         )
 
-    fun addExpense(budget: Budget, amount: Long) = addExpenseHelper.addExpense(budget, amount)
+    fun addExpense(amount: Long) = addExpenseHelper.addExpense(amount)
 }
