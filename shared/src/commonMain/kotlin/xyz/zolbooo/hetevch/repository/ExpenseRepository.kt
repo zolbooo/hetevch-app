@@ -11,7 +11,7 @@ import kotlinx.datetime.Clock
 interface IExpenseRepository {
     suspend fun getAll(): List<Expenses>
     fun watchAll(): Flow<List<Expenses>>
-    suspend fun recordExpense(amount: Long)
+    fun recordExpense(amount: Long)
     suspend fun removeExpense(id: Long)
 }
 
@@ -20,7 +20,7 @@ class ExpenseRepository(
     private val clock: Clock = Clock.System,
     private val coroutineDispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : IExpenseRepository {
-    override suspend fun recordExpense(amount: Long) {
+    override fun recordExpense(amount: Long) {
         database.expenseQueries.recordExpense(
             amount = amount,
             date = clock.now().epochSeconds,
