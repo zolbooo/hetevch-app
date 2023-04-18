@@ -39,5 +39,15 @@ open class MoneySavingHelper : KoinComponent {
         val lastDaySavings = budget.dailyAmount - budget.lastDaySpendings
         return multipleDaysSavings + lastDaySavings
     }
+
     fun getSavedMoneyAmount() = getSavedMoneyAmount(TimeZone.currentSystemDefault())
+
+    fun saveMoneyForCurrentDay(savedAmount: Long) =
+        budgetRepository.saveMoneyForCurrentDay(savedAmount)
+
+    fun saveMoneyForBudget(newDailyAmount: Long) =
+        budgetRepository.saveMoneyForCurrentDay(newDailyAmount)
+
+    fun dismissSavedMoney(savedAmount: Long) =
+        budgetRepository.dismissSavedMoney(savedAmount)
 }

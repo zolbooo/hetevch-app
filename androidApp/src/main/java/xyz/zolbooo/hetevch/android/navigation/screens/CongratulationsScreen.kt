@@ -18,9 +18,18 @@ fun NavGraphBuilder.congratulationsScreen(navController: NavController) {
             estimatedNewBudgetAmount = budget.amount / remainingDays,
             budgetDurationInDays = remainingDays,
             estimatedNewTodayBudgetAmount = budget.dailyAmount + savedAmount,
-            onAddToTotalBudgetPress = { /*TODO*/ },
-            onAddToDailyBudgetPress = { /*TODO*/ },
+            onAddToTotalBudgetPress = {
+                moneySavingHelper.saveMoneyForBudget(savedAmount)
+                navController.popBackStack()
+                navController.navigate("home")
+            },
+            onAddToDailyBudgetPress = {
+                moneySavingHelper.saveMoneyForCurrentDay(savedAmount)
+                navController.popBackStack()
+                navController.navigate("home")
+            },
             onSavePress = {
+                moneySavingHelper.dismissSavedMoney(savedAmount)
                 navController.popBackStack()
                 navController.navigate("home")
             },
