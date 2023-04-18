@@ -7,6 +7,7 @@ import kotlinx.datetime.toInstant
 import kotlinx.datetime.toLocalDateTime
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import xyz.zolbooo.hetevch.repository.Budget
 import xyz.zolbooo.hetevch.repository.IBudgetRepository
 import kotlin.math.ceil
 import kotlin.time.DurationUnit
@@ -16,8 +17,11 @@ open class MoneySavingHelper : KoinComponent {
 
     protected val budgetRepository by inject<IBudgetRepository>()
 
-    fun getSavedMoneyAmount(timeZone: TimeZone = TimeZone.currentSystemDefault()): Long {
-        val budget = budgetRepository.getLatest()!!
+    fun getBudget() = budgetRepository.getLatest()!!
+    fun getRemainingDaysForBudget(budget: Budget): Int = budget.calculateRemainingDays(clock)
+
+    internal fun getSavedMoneyAmount(timeZone: TimeZone): Long {
+        val budget = getBudget()
 
         val daysSinceLastUse = clock.now()
             .toLocalDateTime(timeZone)
@@ -35,4 +39,5 @@ open class MoneySavingHelper : KoinComponent {
         val lastDaySavings = budget.dailyAmount - budget.lastDaySpendings
         return multipleDaysSavings + lastDaySavings
     }
+    fun getSavedMoneyAmount() = getSavedMoneyAmount(TimeZone.currentSystemDefault())
 }
