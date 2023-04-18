@@ -21,6 +21,7 @@ fun NavGraphBuilder.homeScreen(navController: NavController) {
             expenses = expenses,
             expensesLoading = expenses == null,
             onAddPress = { navController.navigate("add-expense") },
+            onBudgetPress = { navController.navigate("budget-settings") }
         )
     }
 }

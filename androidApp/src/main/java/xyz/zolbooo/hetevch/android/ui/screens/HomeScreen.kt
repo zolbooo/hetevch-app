@@ -7,7 +7,9 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccountBalanceWallet
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -80,13 +82,28 @@ fun HomeScreen(
     expenses: List<Expenses>?,
     expensesLoading: Boolean,
     onAddPress: () -> Unit,
+    onBudgetPress: () -> Unit,
 ) {
     Scaffold(
-        floatingActionButton = {
-            ExtendedFloatingActionButton(
-                onClick = onAddPress,
-                icon = { Icon(Icons.Filled.Add, contentDescription = null) },
-                text = { Text(stringResource(R.string.add_expense)) }
+        bottomBar = {
+            BottomAppBar(
+                actions = {
+                    IconButton(onClick = {}) {
+                        Icon(Icons.Filled.Home, contentDescription = null)
+                    }
+                    IconButton(onClick = onBudgetPress) {
+                        Icon(Icons.Filled.AccountBalanceWallet, contentDescription = null)
+                    }
+                },
+                floatingActionButton = {
+                    ExtendedFloatingActionButton(
+                        onClick = onAddPress,
+                        icon = { Icon(Icons.Filled.Add, contentDescription = null) },
+                        text = { Text(stringResource(R.string.add_expense)) },
+                        containerColor = BottomAppBarDefaults.bottomAppBarFabColor,
+                        elevation = FloatingActionButtonDefaults.bottomAppBarFabElevation(),
+                    )
+                },
             )
         },
     ) { paddingValues ->
@@ -172,6 +189,7 @@ fun HomeScreenPreview() {
             expenses = previewExpenses,
             expensesLoading = false,
             onAddPress = {},
+            onBudgetPress = {},
         )
     }
 }
@@ -188,6 +206,7 @@ fun HomeScreenLoadingPreview() {
             expenses = null,
             expensesLoading = true,
             onAddPress = {},
+            onBudgetPress = {},
         )
     }
 }
@@ -204,6 +223,7 @@ fun HomeScreenEmptyPreview() {
             expenses = listOf(),
             expensesLoading = false,
             onAddPress = {},
+            onBudgetPress = {},
         )
     }
 }
