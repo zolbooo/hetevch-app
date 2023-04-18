@@ -18,6 +18,7 @@
     <string name="expenses">Зарлага</string>
     <string name="no_expenses">Одоогоор зарлага байхгүй байна</string>
     <string name="add_expense">Зарлага нэмэх</string>
+    <string name="error_insufficient_funds">Үлдэгдэл хүрэлцэхгүй байна</string>
     <!-- Add expense screen -->
     <string name="back">Буцах</string>
     <string name="remaining_balance">Үлдэгдэл %s</string>
