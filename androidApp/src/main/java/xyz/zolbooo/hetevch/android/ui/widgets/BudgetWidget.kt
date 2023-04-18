@@ -41,7 +41,7 @@ fun BudgetWidget(
     var amount by remember { mutableStateOf("") }
     var duration by remember { mutableStateOf<Int?>(null) }
     Column(modifier.padding(20.dp)) {
-        BudgetCard(amount = 0)
+        BudgetCard(amount = amount.toLongOrNull() ?: 0)
         Spacer(Modifier.height(20.dp))
         Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
             OutlinedTextField(
@@ -61,7 +61,6 @@ fun BudgetWidget(
                 expanded = expanded,
                 onExpandedChange = { expanded = !expanded },
             ) {
-                val formatter = remember { DateTimeFormatter.ofPattern("MMM dd") }
                 OutlinedTextField(
                     label = { Text(text = stringResource(R.string.budget_duration)) },
                     value = duration?.let { formatDateFromNow(it) } ?: "",
