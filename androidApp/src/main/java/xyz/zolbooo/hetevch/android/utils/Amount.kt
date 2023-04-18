@@ -13,7 +13,6 @@ private val mntFormatter = DecimalFormat
         maximumFractionDigits = 0
     }
 
-fun Int.formatMNT(): String = mntFormatter.format(this)
 fun Long.formatMNT(): String = mntFormatter.format(this)
 
 private fun String.nthDigitIndex(n: Int): Int {
@@ -57,6 +56,9 @@ object AmountVisualTransformation : VisualTransformation {
             AnnotatedString(formatted),
             object : OffsetMapping {
                 override fun originalToTransformed(offset: Int): Int {
+                    if (formatted.isEmpty()) {
+                        return 0
+                    }
                     val currentDigit = original.countDigits(0..offset)
                     val originalIndex = original.nthDigitIndex(currentDigit)
                     val formattedIndex = formatted.nthDigitIndex(currentDigit)
