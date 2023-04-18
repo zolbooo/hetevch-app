@@ -1,0 +1,27 @@
+CREATE TABLE budgets(
+    id INTEGER NOT NULL PRIMARY KEY,
+    amount INTEGER NOT NULL,
+    dailyAmount INTEGER NOT NULL,
+    lastDaySpendings INTEGER NOT NULL,
+    lastUsedDate INTEGER NOT NULL,
+    endDate INTEGER NOT NULL
+);
+
+hasBudget: SELECT COUNT(id) > 0 FROM budgets WHERE id = 1;
+
+setBudget {
+    INSERT OR REPLACE INTO budgets(id, amount, dailyAmount, lastDaySpendings, lastUsedDate, endDate)
+        VALUES (
+            1,
+            :amount,
+            :dailyAmount,
+            0,
+            :currentDate,
+            :endDate
+        );
+    DELETE FROM expenses;
+}
+
+getBudget: SELECT * FROM budgets WHERE id = 1;
+
+deleteAll: DELETE FROM budgets;
