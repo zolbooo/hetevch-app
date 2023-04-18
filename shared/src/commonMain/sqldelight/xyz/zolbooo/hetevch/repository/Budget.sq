@@ -8,6 +8,7 @@ CREATE TABLE budgets(
 );
 
 hasBudget: SELECT COUNT(id) > 0 FROM budgets WHERE id = 1;
+getBudget: SELECT * FROM budgets WHERE id = 1;
 
 setBudget {
     INSERT OR REPLACE INTO budgets(id, amount, dailyAmount, lastDaySpendings, lastUsedDate, endDate)
@@ -22,6 +23,12 @@ setBudget {
     DELETE FROM expenses;
 }
 
-getBudget: SELECT * FROM budgets WHERE id = 1;
+updateBudget: UPDATE budgets SET
+    amount = amount - :amount,
+    dailyAmount = :dailyAmount,
+    lastDaySpendings = lastDaySpendings + :amount,
+    lastUsedDate = :date
+WHERE id = 1;
+updateLastUsedDate: UPDATE budgets SET lastUsedDate = :date WHERE id = 1;
 
 deleteAll: DELETE FROM budgets;
