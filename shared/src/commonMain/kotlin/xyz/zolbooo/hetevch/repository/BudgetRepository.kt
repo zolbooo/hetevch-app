@@ -1,11 +1,10 @@
 package xyz.zolbooo.hetevch.repository
 
-import com.russhwolf.settings.ExperimentalSettingsApi
-import com.russhwolf.settings.Settings
-import com.russhwolf.settings.coroutines.FlowSettings
-import com.russhwolf.settings.set
+import app.cash.sqldelight.coroutines.asFlow
+import app.cash.sqldelight.coroutines.mapToOne
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.map
 import kotlinx.datetime.*
 
@@ -13,6 +12,15 @@ data class Budget(
     val amount: Long,
     val dailyAmount: Long,
     val end: LocalDate,
+)
+
+fun Budgets.asBudget() = Budget(
+    amount,
+    dailyAmount,
+    Instant
+        .fromEpochSeconds(endDate)
+        .toLocalDateTime(TimeZone.UTC)
+        .date,
 )
 
 interface IBudgetRepository {
@@ -23,61 +31,39 @@ interface IBudgetRepository {
     fun updateAmount(newAmount: Long)
 }
 
-@OptIn(ExperimentalSettingsApi::class)
 class BudgetRepository(
-    private val settings: Settings,
-    private val flowSettings: FlowSettings,
+    private val database: Database,
     private val clock: Clock = Clock.System,
+    private val coroutineDispatcher: CoroutineDispatcher = Dispatchers.Default,
 ) : IBudgetRepository {
-    private val amountKey = "budget-amount"
-    private val dailyAmountKey = "budget-daily-amount"
-    private val endDateKey = "budget-end-date"
-    override fun hasBudget(): Boolean =
-        listOf(amountKey, endDateKey, dailyAmountKey).all { settings.hasKey(it) }
+    override fun hasBudget(): Boolean = database.budgetQueries.hasBudget().executeAsOne()
 
-    override fun getLatest(): Budget? {
-        if (!hasBudget()) {
-            return null
-        }
-        return Budget(
-            settings.getLong(amountKey, 0),
-            settings.getLong(dailyAmountKey, 0),
-            Instant
-                .fromEpochSeconds(settings.getLong(endDateKey, 0))
-                .toLocalDateTime(TimeZone.UTC)
-                .date,
-        )
-    }
+    override fun getLatest(): Budget? =
+        database.budgetQueries.getBudget().executeAsOneOrNull()?.asBudget()
 
     override fun watchLatest(): Flow<Budget> =
-        combine(
-            flowSettings.getLongFlow(amountKey, 0),
-            flowSettings.getLongFlow(dailyAmountKey, 0),
-            flowSettings.getLongFlow(endDateKey, 0).map { endDate ->
-                Instant
-                    .fromEpochSeconds(endDate)
-                    .toLocalDateTime(TimeZone.UTC)
-                    .date
-            }
-        )
-        { amount, dailyAmount, endDate ->
-            Budget(amount, dailyAmount, endDate)
-        }
+        database.budgetQueries.getBudget()
+            .asFlow()
+            .mapToOne(coroutineDispatcher)
+            .map { it.asBudget() }
 
     override fun setBudget(amount: Long, durationInDays: Int) {
-        val timeZone = TimeZone.currentSystemDefault()
-        val endDayTimestamp = clock.now()
-            .toLocalDateTime(timeZone)
+        val now = clock.now()
+        val endDayTimestamp = now
+            .toLocalDateTime(TimeZone.currentSystemDefault())
             .date
             .plus(durationInDays, DateTimeUnit.DAY)
             .atStartOfDayIn(TimeZone.UTC)
             .epochSeconds
-        settings[amountKey] = amount
-        settings[dailyAmountKey] = amount / durationInDays
-        settings[endDateKey] = endDayTimestamp
+        database.budgetQueries.setBudget(
+            amount = amount,
+            dailyAmount = amount / durationInDays,
+            currentDate = now.epochSeconds,
+            endDate = endDayTimestamp,
+        )
     }
 
     override fun updateAmount(newAmount: Long) {
-        settings[amountKey] = newAmount
+        TODO("Not implemented")
     }
 }
