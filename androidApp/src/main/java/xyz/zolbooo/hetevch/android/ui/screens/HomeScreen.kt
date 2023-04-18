@@ -19,6 +19,7 @@ import xyz.zolbooo.hetevch.android.ui.HetevchTheme
 import xyz.zolbooo.hetevch.android.ui.components.BottomBar
 import xyz.zolbooo.hetevch.android.ui.components.ExpenseCard
 import xyz.zolbooo.hetevch.android.utils.formatMNT
+import xyz.zolbooo.hetevch.helpers.TimeOfDay
 import xyz.zolbooo.hetevch.repository.Expenses
 
 fun LazyListScope.expenseList(loading: Boolean, expenses: List<Expenses>?) {
@@ -61,6 +62,7 @@ fun LazyListScope.expenseList(loading: Boolean, expenses: List<Expenses>?) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
+    timeOfDay: TimeOfDay,
     currentDailyBudget: Long,
     budgetGoalAmount: Long,
     budgetDurationInDays: Int,
@@ -93,8 +95,14 @@ fun HomeScreen(
                 ) {
                     Column(Modifier.padding(20.dp)) {
                         Text(
-                            // TODO: Render greeting depending on the time of day
-                            text = stringResource(R.string.greeting_afternoon),
+                            text = stringResource(
+                                when (timeOfDay) {
+                                    is TimeOfDay.Morning -> R.string.greeting_morning
+                                    is TimeOfDay.Afternoon -> R.string.greeting_afternoon
+                                    is TimeOfDay.Evening -> R.string.greeting_evening
+                                    else -> R.string.greeting_night
+                                },
+                            ),
                             style = MaterialTheme.typography.titleLarge,
                             color = MaterialTheme.colorScheme.onSurface,
                             fontWeight = FontWeight.Bold,
@@ -154,6 +162,7 @@ fun HomeScreenPreview() {
     }
     HetevchTheme {
         HomeScreen(
+            timeOfDay = TimeOfDay.Morning,
             currentDailyBudget = 2_500,
             budgetGoalAmount = 5_000,
             budgetDurationInDays = 3,
@@ -171,6 +180,7 @@ fun HomeScreenPreview() {
 fun HomeScreenLoadingPreview() {
     HetevchTheme {
         HomeScreen(
+            timeOfDay = TimeOfDay.Evening,
             currentDailyBudget = 2_500,
             budgetGoalAmount = 5_000,
             budgetDurationInDays = 3,
@@ -188,6 +198,7 @@ fun HomeScreenLoadingPreview() {
 fun HomeScreenEmptyPreview() {
     HetevchTheme {
         HomeScreen(
+            timeOfDay = TimeOfDay.Afternoon,
             currentDailyBudget = 2_500,
             budgetGoalAmount = 5_000,
             budgetDurationInDays = 3,

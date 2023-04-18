@@ -15,6 +15,7 @@ fun NavGraphBuilder.homeScreen(navController: NavController) {
         val budget by homeViewModel.budgetFlow.collectAsState()
         val expenses by homeViewModel.expensesFlow.collectAsState()
         HomeScreen(
+            timeOfDay = homeViewModel.timeOfDay,
             currentDailyBudget = budget.dailyAmount,
             budgetGoalAmount = budget.amount,
             budgetDurationInDays = homeViewModel.getRemainingDaysForBudget(budget),

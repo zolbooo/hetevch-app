@@ -10,6 +10,8 @@ import xyz.zolbooo.hetevch.repository.Budget
 class HomeViewModel : ViewModel() {
     private val homeHelper = HomeHelper()
 
+    val timeOfDay = homeHelper.getTimeOfDay()
+
     val budgetFlow = homeHelper.watchBudget().stateIn(
         scope = viewModelScope,
         initialValue = homeHelper.getBudget(),
