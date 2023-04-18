@@ -33,7 +33,7 @@ class BudgetRepository(
     private val dailyAmountKey = "budget-daily-amount"
     private val endDateKey = "budget-end-date"
     override fun hasBudget(): Boolean =
-        settings.hasKey(amountKey) && settings.hasKey(endDateKey) && settings.hasKey(dailyAmountKey)
+        listOf(amountKey, endDateKey, dailyAmountKey).all { settings.hasKey(it) }
 
     override fun getLatest(): Budget? {
         if (!hasBudget()) {
