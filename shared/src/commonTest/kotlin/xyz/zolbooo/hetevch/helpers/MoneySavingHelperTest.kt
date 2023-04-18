@@ -70,6 +70,24 @@ class MoneySavingHelperTest {
     }
 
     @Test
+    fun savedMoneyToday() {
+        val currentTime = Instant.parse("2023-01-01T19:00:00Z")
+        val mockClock = Clock.createMockInstance(currentTime)
+
+        startKoin {
+            modules(
+                module {
+                    single { mockClock }
+                    single { mockBudgetRepository }
+                }
+            )
+        }
+
+        val moneySavingHelper = MoneySavingHelper()
+        assertEquals(0L, moneySavingHelper.getSavedMoneyAmount(TimeZone.UTC))
+    }
+
+    @Test
     fun savedMoneyMultipleDays() {
         val currentTime = Instant.parse("2023-01-04T19:00:00Z")
         val mockClock = Clock.createMockInstance(currentTime)

@@ -11,9 +11,10 @@ import xyz.zolbooo.hetevch.repository.IBudgetRepository
 import kotlin.math.ceil
 import kotlin.time.DurationUnit
 
-class MoneySavingHelper : KoinComponent {
-    private val clock by inject<Clock>()
-    private val budgetRepository by inject<IBudgetRepository>()
+open class MoneySavingHelper : KoinComponent {
+    protected val clock by inject<Clock>()
+
+    protected val budgetRepository by inject<IBudgetRepository>()
 
     fun getSavedMoneyAmount(timeZone: TimeZone = TimeZone.currentSystemDefault()): Long {
         val budget = budgetRepository.getLatest()!!
@@ -26,6 +27,9 @@ class MoneySavingHelper : KoinComponent {
             .toDouble(DurationUnit.DAYS)
             .let { ceil(it) }
             .toLong()
+        if (daysSinceLastUse == 0L) {
+            return 0
+        }
 
         val multipleDaysSavings = budget.dailyAmount * (daysSinceLastUse - 1)
         val lastDaySavings = budget.dailyAmount - budget.lastDaySpendings
