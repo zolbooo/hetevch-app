@@ -1,11 +1,9 @@
 package xyz.zolbooo.hetevch.helpers
 
-import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
-import xyz.zolbooo.hetevch.repository.IBudgetRepository
 import xyz.zolbooo.hetevch.repository.ISettingsRepository
 
 sealed class BudgetStatus {
@@ -30,10 +28,7 @@ sealed class BudgetStatus {
     object Ended : BudgetStatus()
 }
 
-class InitHelper : KoinComponent {
-    private val clock by inject<Clock>()
-
-    private val budgetRepository by inject<IBudgetRepository>()
+class InitHelper : KoinComponent, MoneySavingHelper() {
     private val settingsRepository by inject<ISettingsRepository>()
 
     fun getBudgetStatus(): BudgetStatus {
@@ -44,7 +39,7 @@ class InitHelper : KoinComponent {
         val lastOpenDate = settingsRepository.getLastOpenDate().toLocalDateTime(timezone).date
         return when {
             today >= budget.end -> BudgetStatus.Ended
-            lastOpenDate < today -> BudgetStatus.MoneySaved
+            lastOpenDate < today && getSavedMoneyAmount() > 0 -> BudgetStatus.MoneySaved
             else -> BudgetStatus.Ongoing
         }
     }
