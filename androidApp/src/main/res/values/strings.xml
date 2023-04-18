@@ -37,4 +37,5 @@
     <!-- Auxiliary -->
     <string name="today">Өнөөдөр</string>
     <string name="yesterday">Өчигдөр</string>
+    <string name="date_pattern">M-р сарын d</string>
 </resources>

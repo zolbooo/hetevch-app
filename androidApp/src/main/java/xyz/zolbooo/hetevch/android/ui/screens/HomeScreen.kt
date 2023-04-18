@@ -19,6 +19,10 @@ import xyz.zolbooo.hetevch.android.ui.HetevchTheme
 import xyz.zolbooo.hetevch.android.ui.components.BottomBar
 import xyz.zolbooo.hetevch.android.utils.formatMNT
 import xyz.zolbooo.hetevch.repository.Expenses
+import java.time.Instant
+import java.time.LocalDate
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 
 fun LazyListScope.expenseList(loading: Boolean, expenses: List<Expenses>?) {
     if (loading) {
@@ -60,8 +64,23 @@ fun LazyListScope.expenseList(loading: Boolean, expenses: List<Expenses>?) {
                     style = MaterialTheme.typography.bodyLarge,
                     fontWeight = FontWeight.Bold,
                 )
+                val expenseDate = remember(it.date) {
+                    Instant.ofEpochSecond(it.date)
+                        .atZone(ZoneId.systemDefault())
+                        .toLocalDateTime()
+                }
+                val today = remember { LocalDate.now() }
+                val dateString = when {
+                    today.equals(expenseDate.toLocalDate()) -> stringResource(R.string.today)
+                    today.minusDays(1)
+                        .equals(expenseDate.toLocalDate()) -> stringResource(R.string.yesterday)
+
+                    else -> expenseDate.format(DateTimeFormatter.ofPattern(stringResource(R.string.date_pattern)))
+                }
+                val timeString =
+                    "${expenseDate.hour}:${expenseDate.minute.toString().padStart(2, '0')}"
                 Text(
-                    text = "Өнөөдөр, 16:24",
+                    text = "$dateString, $timeString",
                     color = MaterialTheme.colorScheme.onPrimaryContainer,
                     style = MaterialTheme.typography.bodySmall,
                 )
