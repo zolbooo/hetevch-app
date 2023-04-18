@@ -12,6 +12,7 @@ data class Budget(
     val amount: Long,
     val dailyAmount: Long,
     val lastDaySpendings: Long,
+    val lastUsedAt: LocalDateTime,
     val end: LocalDate,
 )
 
@@ -19,6 +20,7 @@ fun Budgets.asBudget() = Budget(
     amount,
     dailyAmount,
     lastDaySpendings,
+    Instant.fromEpochSeconds(lastUsedAt).toLocalDateTime(TimeZone.UTC),
     Instant.fromEpochSeconds(endDate).toLocalDateTime(TimeZone.UTC).date,
 )
 

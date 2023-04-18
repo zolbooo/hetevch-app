@@ -3,7 +3,7 @@ CREATE TABLE budgets(
     amount INTEGER NOT NULL,
     dailyAmount INTEGER NOT NULL,
     lastDaySpendings INTEGER NOT NULL,
-    lastUsedDate INTEGER NOT NULL,
+    lastUsedAt INTEGER NOT NULL,
     endDate INTEGER NOT NULL
 );
 
@@ -11,7 +11,7 @@ hasBudget: SELECT COUNT(id) > 0 FROM budgets WHERE id = 1;
 getBudget: SELECT * FROM budgets WHERE id = 1;
 
 setBudget {
-    INSERT OR REPLACE INTO budgets(id, amount, dailyAmount, lastDaySpendings, lastUsedDate, endDate)
+    INSERT OR REPLACE INTO budgets(id, amount, dailyAmount, lastDaySpendings, lastUsedAt, endDate)
         VALUES (
             1,
             :amount,
@@ -26,8 +26,8 @@ setBudget {
 updateBudget: UPDATE budgets SET
     amount = MAX(amount - :amount, 0),
     lastDaySpendings = lastDaySpendings + :amount,
-    lastUsedDate = :date
+    lastUsedAt = :date
 WHERE id = 1;
-updateLastUsedDate: UPDATE budgets SET lastUsedDate = :date WHERE id = 1;
+updateLastUsedDate: UPDATE budgets SET lastUsedAt = :date WHERE id = 1;
 
 deleteAll: DELETE FROM budgets;

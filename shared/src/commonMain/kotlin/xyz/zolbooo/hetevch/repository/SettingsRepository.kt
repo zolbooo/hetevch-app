@@ -23,7 +23,7 @@ class SettingsRepository(
     private val currencyKey = "app-currency"
 
     override fun getLastOpenDate() =
-        Instant.fromEpochSeconds(database.budgetQueries.getBudget().executeAsOne().lastUsedDate)
+        Instant.fromEpochSeconds(database.budgetQueries.getBudget().executeAsOne().lastUsedAt)
 
     override fun updateLastOpenDate() =
         database.budgetQueries.updateLastUsedDate(clock.now().epochSeconds)
