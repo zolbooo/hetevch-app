@@ -15,7 +15,10 @@ fun NavGraphBuilder.addExpenseScreen(navController: NavController) {
         val budget by addExpenseViewModel.budgetFlow.collectAsState()
         AddExpenseScreen(
             balance = budget.amount,
-            onAddExpense = { amount -> addExpenseViewModel.addExpense(budget, amount) },
+            onAddExpense = { amount ->
+                addExpenseViewModel.addExpense(budget, amount)
+                navController.popBackStack()
+            },
             onBackPress = { navController.popBackStack() },
         )
     }
