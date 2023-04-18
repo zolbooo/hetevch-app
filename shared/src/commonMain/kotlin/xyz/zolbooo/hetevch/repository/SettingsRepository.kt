@@ -17,17 +17,16 @@ interface ISettingsRepository {
 
 class SettingsRepository(
     private val settings: Settings,
+    private val database: Database,
     private val clock: Clock = Clock.System,
 ) : ISettingsRepository {
-    private val lastOpenDateKey = "last-open-date"
     private val currencyKey = "app-currency"
 
     override fun getLastOpenDate() =
-        Instant.fromEpochSeconds(settings.getLong(lastOpenDateKey, clock.now().epochSeconds))
+        Instant.fromEpochSeconds(database.budgetQueries.getBudget().executeAsOne().lastUsedDate)
 
-    override fun updateLastOpenDate() {
-        settings.putLong(lastOpenDateKey, clock.now().epochSeconds)
-    }
+    override fun updateLastOpenDate() =
+        database.budgetQueries.updateLastUsedDate(clock.now().epochSeconds)
 
     override fun getCurrency(): Currency = when (settings.getString(currencyKey, "MNT")) {
         else -> Currency.MNT
