@@ -13,6 +13,7 @@ interface IExpenseRepository {
     fun watchAll(): Flow<List<Expenses>>
     fun recordExpense(amount: Long)
     suspend fun removeExpense(id: Long)
+    fun deleteAll()
 }
 
 class ExpenseRepository(
@@ -37,5 +38,9 @@ class ExpenseRepository(
 
     override suspend fun removeExpense(id: Long) {
         database.expenseQueries.deleteExpense(id)
+    }
+
+    override fun deleteAll() {
+        database.expenseQueries.deleteAll()
     }
 }
