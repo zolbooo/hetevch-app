@@ -16,18 +16,14 @@ import xyz.zolbooo.hetevch.android.ui.components.BudgetCard
 import xyz.zolbooo.hetevch.android.ui.HetevchTheme
 import xyz.zolbooo.hetevch.android.utils.AmountVisualTransformation
 import xyz.zolbooo.hetevch.android.utils.formatMNT
-import java.time.Clock
+import java.time.LocalDate
 import java.time.format.DateTimeFormatter
-import java.time.temporal.ChronoUnit
 
 @Composable
-private fun formatDateFromNow(formatter: DateTimeFormatter, days: Int): String {
-    val clock = Clock.systemDefaultZone()
-    val date = clock.instant()
-        .plus(days.toLong(), ChronoUnit.DAYS)
-        .atZone(clock.zone)
-        .toLocalDate()
-    return "${formatter.format(date)} | ${stringResource(R.string.duration, days)}"
+private fun formatDateFromNow(days: Int): String {
+    val date = LocalDate.now().plusDays(days.toLong())
+    val dateString = date.format(DateTimeFormatter.ofPattern(stringResource(R.string.date_pattern)))
+    return "$dateString | ${stringResource(R.string.duration, days)}"
 }
 
 private fun calculateDailyBudget(amount: String, days: Int?): Long? {
@@ -68,7 +64,7 @@ fun BudgetWidget(
                 val formatter = remember { DateTimeFormatter.ofPattern("MMM dd") }
                 OutlinedTextField(
                     label = { Text(text = stringResource(R.string.budget_duration)) },
-                    value = duration?.let { formatDateFromNow(formatter, it) } ?: "",
+                    value = duration?.let { formatDateFromNow(it) } ?: "",
                     onValueChange = {},
                     readOnly = true,
                     trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
@@ -83,7 +79,7 @@ fun BudgetWidget(
                 ) {
                     for (days in 1..45) {
                         DropdownMenuItem(
-                            text = { Text(text = formatDateFromNow(formatter, days)) },
+                            text = { Text(text = formatDateFromNow(days)) },
                             onClick = {
                                 duration = days
                                 expanded = false
