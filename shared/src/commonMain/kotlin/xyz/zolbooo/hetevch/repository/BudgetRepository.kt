@@ -12,12 +12,14 @@ import kotlin.math.max
 data class Budget(
     val amount: Long,
     val dailyAmount: Long,
+    val lastDaySpendings: Long,
     val end: LocalDate,
 )
 
 fun Budgets.asBudget() = Budget(
     amount,
     dailyAmount,
+    lastDaySpendings,
     Instant.fromEpochSeconds(endDate).toLocalDateTime(TimeZone.UTC).date,
 )
 

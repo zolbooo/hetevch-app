@@ -20,6 +20,7 @@ class HomeHelperTest {
             Budget(
                 amount = 1,
                 dailyAmount = 1,
+                lastDaySpendings = 0,
                 end = LocalDate.parse("2023-01-03"),
             ).calculateRemainingDays(clock)
         )
