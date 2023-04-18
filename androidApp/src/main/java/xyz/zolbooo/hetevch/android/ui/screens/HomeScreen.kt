@@ -6,10 +6,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AccountBalanceWallet
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Home
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -20,6 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import xyz.zolbooo.hetevch.android.R
 import xyz.zolbooo.hetevch.android.ui.HetevchTheme
+import xyz.zolbooo.hetevch.android.ui.components.BottomBar
 import xyz.zolbooo.hetevch.android.utils.formatMNT
 import xyz.zolbooo.hetevch.repository.Expenses
 
@@ -86,24 +83,10 @@ fun HomeScreen(
 ) {
     Scaffold(
         bottomBar = {
-            BottomAppBar(
-                actions = {
-                    IconButton(onClick = {}) {
-                        Icon(Icons.Filled.Home, contentDescription = null)
-                    }
-                    IconButton(onClick = onBudgetPress) {
-                        Icon(Icons.Filled.AccountBalanceWallet, contentDescription = null)
-                    }
-                },
-                floatingActionButton = {
-                    ExtendedFloatingActionButton(
-                        onClick = onAddPress,
-                        icon = { Icon(Icons.Filled.Add, contentDescription = null) },
-                        text = { Text(stringResource(R.string.add_expense)) },
-                        containerColor = BottomAppBarDefaults.bottomAppBarFabColor,
-                        elevation = FloatingActionButtonDefaults.bottomAppBarFabElevation(),
-                    )
-                },
+            BottomBar(
+                onHomePress = {},
+                onBudgetPress = onBudgetPress,
+                onAddExpensePress = onAddPress,
             )
         },
     ) { paddingValues ->
