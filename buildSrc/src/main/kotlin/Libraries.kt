@@ -21,7 +21,7 @@ object Versions {
     const val lifecycleViewModelCompose = "2.6.1"
 
     const val testKtx = "1.5.0"
-    const val robolectric = "4.9"
+    const val robolectric = "4.10"
 }
 
 object Libraries {
