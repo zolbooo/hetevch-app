@@ -13,10 +13,10 @@ object Versions {
     const val sqlDelight = "2.0.0-alpha05"
     const val datastore = "1.0.0"
 
-    const val splashScreen = "1.0.0"
+    const val splashScreen = "1.0.1"
 
-    const val composeBom = "2023.04.00"
-    const val activityCompose = "1.7.0"
+    const val composeBom = "2023.04.01"
+    const val activityCompose = "1.7.1"
     const val composeNavigation = "2.5.3"
     const val lifecycleViewModelCompose = "2.6.1"
 
