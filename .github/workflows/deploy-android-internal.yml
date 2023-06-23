@@ -16,6 +16,8 @@ jobs:
         with:
           ruby-version: 2.7.2
           bundler-cache: true
+      - name: Install Fastlane
+        run: bundle install
       - name: Create Google Play Service Account Key file
         run: |
           echo ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT }} | base64 --decode > fastlane/play-service-account.json
