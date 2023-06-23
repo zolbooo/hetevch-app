@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
     kotlin("android")
 }
 
@@ -60,5 +61,7 @@ dependencies {
 
     implementation(Libraries.Android.splashScreen)
 
-    implementation(Libraries.Android.firebaseBom)
+    implementation(platform(Libraries.Android.firebaseBom))
+    implementation(Libraries.Android.analytics)
+    implementation(Libraries.Android.crashlytics)
 }

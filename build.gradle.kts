@@ -3,6 +3,7 @@ plugins {
     id("com.android.application").version(Versions.agp).apply(false)
     id("com.android.library").version(Versions.agp).apply(false)
     id("com.google.gms.google-services").version(Versions.googleServices).apply(false)
+    id("com.google.firebase.crashlytics").version(Versions.firebaseCrashlytics).apply(false)
     kotlin("android").version(Versions.kotlin).apply(false)
     kotlin("multiplatform").version(Versions.kotlin).apply(false)
 }

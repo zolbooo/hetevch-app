@@ -1,6 +1,7 @@
 object Versions {
     const val agp = "7.4.0"
     const val googleServices = "4.3.15"
+    const val firebaseCrashlytics = "2.9.6"
 
     const val kotlin = "1.8.21"
     const val kotlinCompilerExtensionVersion = "1.4.7"
@@ -82,6 +83,8 @@ object Libraries {
             "com.google.accompanist:accompanist-systemuicontroller:${Versions.accompanist}"
 
         const val firebaseBom = "com.google.firebase:firebase-bom:${Versions.firebaseBom}"
+        const val analytics = "com.google.firebase:firebase-analytics-ktx"
+        const val crashlytics = "com.google.firebase:firebase-crashlytics-ktx"
     }
 
     object iOS {
