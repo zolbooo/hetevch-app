@@ -1,0 +1,28 @@
+name: Deploy to internal track
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy-internal:
+    defaults:
+      run:
+        working-directory: androidApp
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7.2
+          bundler-cache: true
+      - name: Create Google Play Service Account Key file
+        run: |
+          echo ${{ secrets.GOOGLE_PLAY_SERVICE_ACCOUNT }} | base64 --decode > fastlane/play-service-account.json
+      - name: Deploy to internal track
+        run: bundle exec fastlane internal
+        env:
+          ANDROID_KEYSTORE_FILE: keystore.jks
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: app-signing-key
+          ANDROID_KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
