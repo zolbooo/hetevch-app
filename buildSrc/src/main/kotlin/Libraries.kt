@@ -8,14 +8,15 @@ object Versions {
     const val datetime = "0.4.0"
     const val settings = "1.0.0"
 
-    const val koin = "3.4.0"
+    const val koin = "3.4.2"
 
-    const val sqlDelight = "2.0.0-alpha05"
+    const val sqlDelight = "2.0.0-rc01"
     const val datastore = "1.0.0"
 
     const val splashScreen = "1.0.1"
 
     const val composeBom = "2023.05.01"
+    const val accompanist = "0.30.0"
     const val activityCompose = "1.7.1"
     const val composeNavigation = "2.5.3"
     const val lifecycleViewModelCompose = "2.6.1"
@@ -73,6 +74,8 @@ object Libraries {
         const val splashScreen = "androidx.core:core-splashscreen:${Versions.splashScreen}"
         const val desugaring = "com.android.tools:desugar_jdk_libs:${Versions.desugaring}"
         const val sqlDelight = "app.cash.sqldelight:android-driver:${Versions.sqlDelight}"
+        const val accompanistSystemUiController =
+            "com.google.accompanist:accompanist-systemuicontroller:${Versions.accompanist}"
     }
 
     object iOS {

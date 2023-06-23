@@ -54,6 +54,7 @@ dependencies {
     implementation(Libraries.Compose.lifecycleViewModelCompose)
 
     implementation(Libraries.activityCompose)
+    implementation(Libraries.Android.accompanistSystemUiController)
     implementation(Libraries.koinAndroid)
 
     implementation(Libraries.Android.splashScreen)
