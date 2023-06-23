@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "605838075713",
+    "project_id": "hetevch-app",
+    "storage_bucket": "hetevch-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:605838075713:android:5be5621cab01f4e976a3c0",
+        "android_client_info": {
+          "package_name": "xyz.zolbooo.hetevch.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "605838075713-069d7httct2lddvmrcpl2aen3ini9g96.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDd-6Gi8D4LPcJB_1TnG4NEDnQw_H7T-j4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "605838075713-069d7httct2lddvmrcpl2aen3ini9g96.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

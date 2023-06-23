@@ -1,5 +1,7 @@
 object Versions {
     const val agp = "7.4.0"
+    const val googleServices = "4.3.15"
+
     const val kotlin = "1.8.21"
     const val kotlinCompilerExtensionVersion = "1.4.7"
     const val desugaring = "2.0.3"
@@ -16,6 +18,8 @@ object Versions {
     const val splashScreen = "1.0.1"
 
     const val composeBom = "2023.05.01"
+    const val firebaseBom = "32.1.1"
+
     const val accompanist = "0.30.0"
     const val activityCompose = "1.7.1"
     const val composeNavigation = "2.5.3"
@@ -76,6 +80,8 @@ object Libraries {
         const val sqlDelight = "app.cash.sqldelight:android-driver:${Versions.sqlDelight}"
         const val accompanistSystemUiController =
             "com.google.accompanist:accompanist-systemuicontroller:${Versions.accompanist}"
+
+        const val firebaseBom = "com.google.firebase:firebase-bom:${Versions.firebaseBom}"
     }
 
     object iOS {

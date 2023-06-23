@@ -1,5 +1,6 @@
 plugins {
     id("com.android.application")
+    id("com.google.gms.google-services")
     kotlin("android")
 }
 
@@ -58,4 +59,6 @@ dependencies {
     implementation(Libraries.koinAndroid)
 
     implementation(Libraries.Android.splashScreen)
+
+    implementation(Libraries.Android.firebaseBom)
 }
