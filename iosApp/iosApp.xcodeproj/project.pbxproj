@@ -10,9 +10,11 @@
 		058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557BA273AAA24004C7B11 /* Assets.xcassets */; };
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
+		22520A2C2A46FC2C00C4A143 /* BudgetCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22520A2B2A46FC2C00C4A143 /* BudgetCardView.swift */; };
 		22F7ABE52A46DB03003BE15D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22F7ABE42A46DB03003BE15D /* GoogleService-Info.plist */; };
 		22F7ABE92A46EE44003BE15D /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 22F7ABE82A46EE44003BE15D /* FirebaseAnalyticsSwift */; };
 		22F7ABEB2A46EE44003BE15D /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 22F7ABEA2A46EE44003BE15D /* FirebaseCrashlytics */; };
+		22F7ABF12A46F21B003BE15D /* CreateBudgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F7ABF02A46F21B003BE15D /* CreateBudgetView.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 		CFE0E811D19300720B4C1136 /* Pods_Hetevch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7602C988C192CCEB9FEFD786 /* Pods_Hetevch.framework */; };
 /* End PBXBuildFile section */
@@ -22,7 +24,9 @@
 		058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		08E6FCB8569358B19D90020D /* Pods-Hetevch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hetevch.release.xcconfig"; path = "Target Support Files/Pods-Hetevch/Pods-Hetevch.release.xcconfig"; sourceTree = "<group>"; };
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
+		22520A2B2A46FC2C00C4A143 /* BudgetCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetCardView.swift; sourceTree = "<group>"; };
 		22F7ABE42A46DB03003BE15D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		22F7ABF02A46F21B003BE15D /* CreateBudgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateBudgetView.swift; sourceTree = "<group>"; };
 		4045DECCEB0D45F4E900D146 /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
 		6BE54A4A54881949E92ECD52 /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* Hetevch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hetevch.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -54,6 +58,22 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		22520A2A2A46FC1900C4A143 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				22520A2B2A46FC2C00C4A143 /* BudgetCardView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		22F7ABEF2A46F203003BE15D /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				22F7ABF02A46F21B003BE15D /* CreateBudgetView.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
 		7555FF72242A565900829871 = {
 			isa = PBXGroup;
 			children = (
@@ -75,6 +95,8 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				22520A2A2A46FC1900C4A143 /* Components */,
+				22F7ABEF2A46F203003BE15D /* Screens */,
 				22F7ABE42A46DB03003BE15D /* GoogleService-Info.plist */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
 				7555FF82242A565900829871 /* ContentView.swift */,
@@ -248,6 +270,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
+				22F7ABF12A46F21B003BE15D /* CreateBudgetView.swift in Sources */,
+				22520A2C2A46FC2C00C4A143 /* BudgetCardView.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
