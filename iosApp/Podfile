@@ -2,7 +2,4 @@ target 'Hetevch' do
   use_frameworks!
   platform :ios, '14.1'
   pod 'shared', :path => '../shared'
-
-  pod 'FirebaseAnalytics'
-  pod 'FirebaseCrashlytics'
 end
