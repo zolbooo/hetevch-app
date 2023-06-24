@@ -12,15 +12,13 @@ import SVGView
 struct BudgetCardView: View {
     var amount: String
     var body: some View {
-        GroupBox {
-            HStack(alignment: .bottom) {
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("Миний зорилтот төлөвлөгөө").font(.caption).fontWeight(.light)
-                    Text(amount).font(.title2)
-                }
-                Spacer()
-                Image("budget")
+        HStack(alignment: .bottom) {
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Миний зорилтот төлөвлөгөө").font(.caption).fontWeight(.light)
+                Text(amount).font(.title2)
             }
+            Spacer()
+            Image("budget")
         }
     }
 }
