@@ -61,7 +61,6 @@ fun LazyListScope.expenseList(loading: Boolean, expenses: List<Expenses>?) {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
     timeOfDay: TimeOfDay,
