@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import SVGView
 
 struct BudgetCardView: View {
     var amount: String

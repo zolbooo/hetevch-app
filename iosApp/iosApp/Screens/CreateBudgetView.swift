@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import SVGView
 
 struct CreateBudgetView: View {
     @State private var amount = ""
