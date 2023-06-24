@@ -46,11 +46,16 @@ fun BudgetWidget(
         BudgetCard(amount = amount.toLongOrNull() ?: 0)
         Spacer(Modifier.height(20.dp))
         Column(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+            val pattern = remember { Regex("^\\d*$") }
             OutlinedTextField(
                 label = { Text(text = stringResource(R.string.budget_amount)) },
                 visualTransformation = AmountVisualTransformation,
                 value = amount,
-                onValueChange = { amount = it },
+                onValueChange = {
+                    if (pattern.matches(it)) {
+                        amount = it
+                    }
+                },
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Decimal,
                     imeAction = ImeAction.Next,
