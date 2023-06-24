@@ -1,5 +1,5 @@
 object Versions {
-    const val agp = "7.4.0"
+    const val agp = "7.4.1"
     const val googleServices = "4.3.15"
     const val firebaseCrashlytics = "2.9.6"
 
