@@ -7,6 +7,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -37,27 +38,35 @@ fun SaveMoneyScreen(
     ) { paddingValues ->
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier
                 .padding(paddingValues)
                 .fillMaxWidth(),
         ) {
-            Spacer(Modifier.height(25.dp))
-            Image(
-                painter = painterResource(R.drawable.saving), contentDescription = null
-            )
-            Spacer(Modifier.height(25.dp))
-            // TODO: Render different strings depending on open date
-            Text(
-                text = stringResource(R.string.your_saving_yesterday),
-                style = MaterialTheme.typography.titleSmall,
-                fontWeight = FontWeight.Light,
-            )
-            Text(
-                text = savedAmount.formatMNT(),
-                style = MaterialTheme.typography.headlineLarge,
-                fontWeight = FontWeight.Bold,
-            )
-            Spacer(Modifier.height(40.dp))
+            BoxWithConstraints {
+                val shouldShrinkImage = maxHeight < 700.dp
+                val shrunkImageHeight = maxHeight - 520.dp
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    Image(
+                        painter = painterResource(R.drawable.saving),
+                        contentDescription = null,
+                        contentScale = ContentScale.Inside,
+                        modifier = if (shouldShrinkImage) Modifier.height(shrunkImageHeight) else Modifier,
+                    )
+                    Spacer(Modifier.height(25.dp))
+                    // TODO: Render different strings depending on open date
+                    Text(
+                        text = stringResource(R.string.your_saving_yesterday),
+                        style = MaterialTheme.typography.titleSmall,
+                        fontWeight = FontWeight.Light,
+                    )
+                    Text(
+                        text = savedAmount.formatMNT(),
+                        style = MaterialTheme.typography.headlineLarge,
+                        fontWeight = FontWeight.Bold,
+                    )
+                }
+            }
             Column(verticalArrangement = Arrangement.Bottom, modifier = Modifier.weight(1f)) {
                 Card(Modifier.padding(20.dp)) {
                     Column(Modifier.padding(horizontal = 20.dp, vertical = 24.dp)) {
@@ -69,7 +78,10 @@ fun SaveMoneyScreen(
                             modifier = Modifier.padding(horizontal = 20.dp),
                         )
                         Spacer(Modifier.height(24.dp))
-                        OutlinedButton(onClick = onAddToTotalBudgetPress, modifier = Modifier.fillMaxWidth()) {
+                        OutlinedButton(
+                            onClick = onAddToTotalBudgetPress,
+                            modifier = Modifier.minimumInteractiveComponentSize()
+                        ) {
                             Column(
                                 horizontalAlignment = Alignment.CenterHorizontally,
                                 verticalArrangement = Arrangement.spacedBy(5.dp),
@@ -90,7 +102,10 @@ fun SaveMoneyScreen(
                             }
                         }
                         Spacer(Modifier.height(10.dp))
-                        OutlinedButton(onClick = onAddToDailyBudgetPress) {
+                        OutlinedButton(
+                            onClick = onAddToDailyBudgetPress,
+                            modifier = Modifier.minimumInteractiveComponentSize(),
+                        ) {
                             Column(
                                 horizontalAlignment = Alignment.CenterHorizontally,
                                 verticalArrangement = Arrangement.spacedBy(5.dp),
@@ -110,7 +125,10 @@ fun SaveMoneyScreen(
                             }
                         }
                         Spacer(Modifier.height(10.dp))
-                        OutlinedButton(onClick = onSavePress) {
+                        OutlinedButton(
+                            onClick = onSavePress,
+                            modifier = Modifier.minimumInteractiveComponentSize(),
+                        ) {
                             Column(
                                 horizontalAlignment = Alignment.CenterHorizontally,
                                 verticalArrangement = Arrangement.spacedBy(5.dp),
@@ -135,6 +153,7 @@ fun SaveMoneyScreen(
 
 @Preview(name = "Light mode")
 @Preview(name = "Dark mode", uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Preview(name = "Medium screen", heightDp = 700)
 @Composable
 fun CongratulationsScreenPreview() {
     HetevchTheme {
