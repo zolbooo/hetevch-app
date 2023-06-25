@@ -8,11 +8,6 @@ import xyz.zolbooo.hetevch.repository.IBudgetRepository
 import xyz.zolbooo.hetevch.repository.IExpenseRepository
 import xyz.zolbooo.hetevch.repository.ISettingsRepository
 
-fun Budget.calculateRemainingDays(clock: Clock): Int {
-    val today = clock.now().toLocalDateTime(TimeZone.UTC).date
-    return end.minus(today).days
-}
-
 class HomeUseCase : KoinComponent {
     private val clock by inject<Clock>()
 

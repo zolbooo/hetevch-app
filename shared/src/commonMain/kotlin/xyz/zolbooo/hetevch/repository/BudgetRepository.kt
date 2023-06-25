@@ -7,7 +7,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.datetime.*
-import xyz.zolbooo.hetevch.usecase.calculateRemainingDays
 import kotlin.math.max
 
 data class Budget(
@@ -16,7 +15,12 @@ data class Budget(
     val lastDaySpendings: Long,
     val lastUsedAt: LocalDateTime,
     val end: LocalDate,
-)
+) {
+    fun calculateRemainingDays(clock: Clock): Int {
+        val today = clock.now().toLocalDateTime(TimeZone.currentSystemDefault()).date
+        return end.minus(today).days
+    }
+}
 
 fun Budgets.asBudget() = Budget(
     amount,
