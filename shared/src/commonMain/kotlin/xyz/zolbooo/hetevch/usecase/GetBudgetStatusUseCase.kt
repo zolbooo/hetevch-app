@@ -1,4 +1,4 @@
-package xyz.zolbooo.hetevch.helpers
+package xyz.zolbooo.hetevch.usecase
 
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
@@ -28,7 +28,7 @@ sealed class BudgetStatus {
     object Ended : BudgetStatus()
 }
 
-class InitHelper : KoinComponent, MoneySavingHelper() {
+class GetBudgetStatusUseCase : KoinComponent, SaveMoneyUseCase() {
     private val settingsRepository by inject<ISettingsRepository>()
 
     fun getBudgetStatus(): BudgetStatus {

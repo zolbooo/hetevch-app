@@ -17,17 +17,17 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import xyz.zolbooo.hetevch.android.ui.HetevchTheme
 import xyz.zolbooo.hetevch.android.navigation.NavigationRoot
-import xyz.zolbooo.hetevch.helpers.BudgetStatus
-import xyz.zolbooo.hetevch.helpers.InitHelper
+import xyz.zolbooo.hetevch.usecase.BudgetStatus
+import xyz.zolbooo.hetevch.usecase.GetBudgetStatusUseCase
 
 class MainActivity : ComponentActivity() {
-    private val initHelper = InitHelper()
+    private val getBudgetStatusUseCase = GetBudgetStatusUseCase()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         installSplashScreen()
 
         // Compute value for startDestination here as the splash screen is being shown
-        val startDestination = when (initHelper.getBudgetStatus()) {
+        val startDestination = when (getBudgetStatusUseCase.getBudgetStatus()) {
             BudgetStatus.NotCreated -> "create-budget"
             BudgetStatus.MoneySaved -> "money-saved"
             BudgetStatus.Ongoing -> "home"

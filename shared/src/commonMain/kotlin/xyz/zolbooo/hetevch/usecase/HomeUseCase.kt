@@ -1,4 +1,4 @@
-package xyz.zolbooo.hetevch.helpers
+package xyz.zolbooo.hetevch.usecase
 
 import kotlinx.datetime.*
 import org.koin.core.component.KoinComponent
@@ -20,7 +20,7 @@ sealed class TimeOfDay {
     object Night : TimeOfDay()
 }
 
-class HomeHelper : KoinComponent {
+class HomeUseCase : KoinComponent {
     private val clock by inject<Clock>()
 
     private val budgetRepository by inject<IBudgetRepository>()

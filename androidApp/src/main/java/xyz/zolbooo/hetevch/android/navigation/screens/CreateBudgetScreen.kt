@@ -8,15 +8,15 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import xyz.zolbooo.hetevch.android.ui.widgets.BudgetWidget
-import xyz.zolbooo.hetevch.helpers.CreateBudgetHelper
+import xyz.zolbooo.hetevch.usecase.CreateBudgetUseCase
 
 fun NavGraphBuilder.createBudgetScreen(navController: NavController) {
     composable("create-budget") {
-        val createBudgetHelper = remember { CreateBudgetHelper() }
+        val createBudgetUseCase = remember { CreateBudgetUseCase() }
         Scaffold { paddingValues ->
             BudgetWidget(
                 onSave = { amount, durationInDays ->
-                    createBudgetHelper.setBudget(amount, durationInDays)
+                    createBudgetUseCase.setBudget(amount, durationInDays)
                     navController.popBackStack()
                     navController.navigate("home")
                 },

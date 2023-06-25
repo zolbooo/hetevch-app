@@ -1,4 +1,4 @@
-package xyz.zolbooo.hetevch.helpers
+package xyz.zolbooo.hetevch.usecase
 
 import kotlinx.datetime.Clock
 import org.koin.core.component.KoinComponent
@@ -7,7 +7,7 @@ import xyz.zolbooo.hetevch.repository.Budget
 import xyz.zolbooo.hetevch.repository.IBudgetRepository
 import xyz.zolbooo.hetevch.repository.IExpenseRepository
 
-class BudgetSettingsHelper : KoinComponent {
+class BudgetSettingsUseCase : KoinComponent {
     private val clock by inject<Clock>()
 
     private val budgetRepository by inject<IBudgetRepository>()

@@ -21,7 +21,7 @@ import xyz.zolbooo.hetevch.android.ui.HetevchTheme
 import xyz.zolbooo.hetevch.android.ui.components.BottomBar
 import xyz.zolbooo.hetevch.android.ui.components.ExpenseCard
 import xyz.zolbooo.hetevch.android.utils.formatMNT
-import xyz.zolbooo.hetevch.helpers.TimeOfDay
+import xyz.zolbooo.hetevch.usecase.TimeOfDay
 import xyz.zolbooo.hetevch.repository.Expenses
 
 fun LazyListScope.expenseList(loading: Boolean, expenses: List<Expenses>?) {

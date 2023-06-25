@@ -1,4 +1,4 @@
-package xyz.zolbooo.hetevch.helpers
+package xyz.zolbooo.hetevch.usecase
 
 import kotlinx.datetime.Clock
 import kotlinx.datetime.TimeZone
@@ -12,7 +12,7 @@ import xyz.zolbooo.hetevch.repository.IBudgetRepository
 import kotlin.math.ceil
 import kotlin.time.DurationUnit
 
-open class MoneySavingHelper : KoinComponent {
+open class SaveMoneyUseCase : KoinComponent {
     protected val clock by inject<Clock>()
 
     protected val budgetRepository by inject<IBudgetRepository>()

@@ -1,4 +1,4 @@
-package xyz.zolbooo.hetevch.helpers
+package xyz.zolbooo.hetevch.usecase
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
@@ -34,9 +34,21 @@ fun createReadonlyBudgetRepository(budget: Budget) = object : IBudgetRepository 
     override fun recordExpense(amount: Long) {
         throw UnsupportedOperationException("Read-only instance")
     }
+
+    override fun saveMoneyForCurrentDay(savedAmount: Long) {
+        throw UnsupportedOperationException("Read-only instance")
+    }
+
+    override fun saveMoneyForBudget(newDailyAmount: Long) {
+        throw UnsupportedOperationException("Read-only instance")
+    }
+
+    override fun dismissSavedMoney(savedAmount: Long) {
+        throw UnsupportedOperationException("Read-only instance")
+    }
 }
 
-class MoneySavingHelperTest {
+class SaveMoneUseCaseTest {
     @AfterTest
     fun teardown() {
         stopKoin()
@@ -65,8 +77,8 @@ class MoneySavingHelperTest {
             )
         }
 
-        val moneySavingHelper = MoneySavingHelper()
-        assertEquals(500L, moneySavingHelper.getSavedMoneyAmount(TimeZone.UTC))
+        val saveMoneyUseCase = SaveMoneyUseCase()
+        assertEquals(500L, saveMoneyUseCase.getSavedMoneyAmount(TimeZone.UTC))
     }
 
     @Test
@@ -83,8 +95,8 @@ class MoneySavingHelperTest {
             )
         }
 
-        val moneySavingHelper = MoneySavingHelper()
-        assertEquals(0L, moneySavingHelper.getSavedMoneyAmount(TimeZone.UTC))
+        val saveMoneyUseCase = SaveMoneyUseCase()
+        assertEquals(0L, saveMoneyUseCase.getSavedMoneyAmount(TimeZone.UTC))
     }
 
     @Test
@@ -101,8 +113,8 @@ class MoneySavingHelperTest {
             )
         }
 
-        val moneySavingHelper = MoneySavingHelper()
-        assertEquals(2500L, moneySavingHelper.getSavedMoneyAmount(TimeZone.UTC))
+        val saveMoneyUseCase = SaveMoneyUseCase()
+        assertEquals(2500L, saveMoneyUseCase.getSavedMoneyAmount(TimeZone.UTC))
     }
 
     // Updated dailyAmount would be (10000 - 1500) / 8 = 937
@@ -129,8 +141,8 @@ class MoneySavingHelperTest {
             )
         }
 
-        val moneySavingHelper = MoneySavingHelper()
-        assertEquals(-500, moneySavingHelper.getSavedMoneyAmount(TimeZone.UTC))
+        val saveMoneyUseCase = SaveMoneyUseCase()
+        assertEquals(-500, saveMoneyUseCase.getSavedMoneyAmount(TimeZone.UTC))
     }
     @Test
     fun savedMoneyMultipleDaysOverused() {
@@ -146,7 +158,7 @@ class MoneySavingHelperTest {
             )
         }
 
-        val moneySavingHelper = MoneySavingHelper()
-        assertEquals(500, moneySavingHelper.getSavedMoneyAmount(TimeZone.UTC))
+        val saveMoneyUseCase = SaveMoneyUseCase()
+        assertEquals(500, saveMoneyUseCase.getSavedMoneyAmount(TimeZone.UTC))
     }
 }

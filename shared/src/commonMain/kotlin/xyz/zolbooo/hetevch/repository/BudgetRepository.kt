@@ -7,7 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.datetime.*
-import xyz.zolbooo.hetevch.helpers.calculateRemainingDays
+import xyz.zolbooo.hetevch.usecase.calculateRemainingDays
 import kotlin.math.max
 
 data class Budget(

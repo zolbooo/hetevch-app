@@ -10,13 +10,13 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import xyz.zolbooo.hetevch.android.ui.components.BottomBar
 import xyz.zolbooo.hetevch.android.ui.widgets.BudgetWidget
-import xyz.zolbooo.hetevch.helpers.BudgetSettingsHelper
+import xyz.zolbooo.hetevch.usecase.BudgetSettingsUseCase
 
 fun NavGraphBuilder.budgetSettingsScreen(navController: NavController) {
     composable("budget-settings") {
-        val budgetSettingsHelper = remember { BudgetSettingsHelper() }
-        val budget = remember { budgetSettingsHelper.getBudget() }
-        val budgetDuration = remember { budgetSettingsHelper.currentBudgetDuration(budget) }
+        val budgetSettingsUseCase = remember { BudgetSettingsUseCase() }
+        val budget = remember { budgetSettingsUseCase.getBudget() }
+        val budgetDuration = remember { budgetSettingsUseCase.currentBudgetDuration(budget) }
         Scaffold(bottomBar = {
             BottomBar(
                 onHomePress = {
@@ -33,7 +33,7 @@ fun NavGraphBuilder.budgetSettingsScreen(navController: NavController) {
             Surface(Modifier.padding(paddingValues)) {
                 BudgetWidget(
                     onSave = { amount, duration ->
-                        budgetSettingsHelper.setBudget(amount, duration)
+                        budgetSettingsUseCase.setBudget(amount, duration)
                         navController.popBackStack(
                             route = "home",
                             inclusive = false,

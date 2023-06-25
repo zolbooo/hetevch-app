@@ -1,4 +1,4 @@
-package xyz.zolbooo.hetevch.helpers
+package xyz.zolbooo.hetevch.usecase
 
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
@@ -8,7 +8,7 @@ import xyz.zolbooo.hetevch.repository.Budget
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class HomeHelperTest {
+class HomeUseCaseTest {
     @Test
     fun calculateRemainingDays() {
         val clock = object : Clock {
