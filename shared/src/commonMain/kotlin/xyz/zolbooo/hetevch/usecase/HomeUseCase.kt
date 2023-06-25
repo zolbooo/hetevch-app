@@ -13,13 +13,6 @@ fun Budget.calculateRemainingDays(clock: Clock): Int {
     return end.minus(today).days
 }
 
-sealed class TimeOfDay {
-    object Morning : TimeOfDay()
-    object Afternoon : TimeOfDay()
-    object Evening : TimeOfDay()
-    object Night : TimeOfDay()
-}
-
 class HomeUseCase : KoinComponent {
     private val clock by inject<Clock>()
 
@@ -34,12 +27,4 @@ class HomeUseCase : KoinComponent {
     fun getExpenses() = expensesRepository.watchAll()
 
     fun updateLastOpenDate() = settingsRepository.updateLastOpenDate()
-
-    fun getTimeOfDay(): TimeOfDay =
-        when (clock.now().toLocalDateTime(TimeZone.currentSystemDefault()).hour) {
-            in 5 until 12 -> TimeOfDay.Morning
-            in 12 until 17 -> TimeOfDay.Afternoon
-            in 17 until 21 -> TimeOfDay.Evening
-            else -> TimeOfDay.Night
-        }
 }

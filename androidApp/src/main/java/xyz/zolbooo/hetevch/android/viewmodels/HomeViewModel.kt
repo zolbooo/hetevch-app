@@ -6,11 +6,13 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.stateIn
 import xyz.zolbooo.hetevch.usecase.HomeUseCase
 import xyz.zolbooo.hetevch.repository.Budget
+import xyz.zolbooo.hetevch.usecase.TimeOfDayUseCase
 
 class HomeViewModel : ViewModel() {
     private val homeUseCase = HomeUseCase()
+    private val timeOfDayUseCase = TimeOfDayUseCase()
 
-    val timeOfDay = homeUseCase.getTimeOfDay()
+    val timeOfDay = timeOfDayUseCase.getTimeOfDay()
 
     val budgetFlow = homeUseCase.watchBudget().stateIn(
         scope = viewModelScope,
