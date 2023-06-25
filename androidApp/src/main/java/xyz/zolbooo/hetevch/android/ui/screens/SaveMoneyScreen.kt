@@ -19,7 +19,7 @@ import xyz.zolbooo.hetevch.android.utils.formatMNT
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CongratulationsScreen(
+fun SaveMoneyScreen(
     savedAmount: Long,
     estimatedNewBudgetAmount: Long,
     budgetDurationInDays: Int,
@@ -138,7 +138,7 @@ fun CongratulationsScreen(
 @Composable
 fun CongratulationsScreenPreview() {
     HetevchTheme {
-        CongratulationsScreen(
+        SaveMoneyScreen(
             savedAmount = 25_000,
             estimatedNewBudgetAmount = 3000,
             budgetDurationInDays = 10,

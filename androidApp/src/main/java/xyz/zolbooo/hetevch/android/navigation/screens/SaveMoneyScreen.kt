@@ -4,16 +4,16 @@ import androidx.compose.runtime.remember
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import xyz.zolbooo.hetevch.android.ui.screens.CongratulationsScreen
+import xyz.zolbooo.hetevch.android.ui.screens.SaveMoneyScreen
 import xyz.zolbooo.hetevch.usecase.SaveMoneyUseCase
 
-fun NavGraphBuilder.congratulationsScreen(navController: NavController) {
+fun NavGraphBuilder.saveMoneyScreen(navController: NavController) {
     composable("money-saved") {
         val saveMoneyUseCase = remember { SaveMoneyUseCase() }
         val budget = remember { saveMoneyUseCase.getBudget() }
         val savedAmount = remember { saveMoneyUseCase.getSavedMoneyAmount() }
         val remainingDays = remember { saveMoneyUseCase.getRemainingDaysForBudget(budget) }
-        CongratulationsScreen(
+        SaveMoneyScreen(
             savedAmount = savedAmount,
             estimatedNewBudgetAmount = budget.amount / remainingDays,
             budgetDurationInDays = remainingDays,
