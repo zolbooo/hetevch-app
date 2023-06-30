@@ -11,6 +11,7 @@
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		220D020C2A4F16F6001F5C5F /* CurrencyField in Frameworks */ = {isa = PBXBuildFile; productRef = 220D020B2A4F16F6001F5C5F /* CurrencyField */; };
+		220D020F2A4F21D9001F5C5F /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220D020E2A4F21D9001F5C5F /* DateExtensions.swift */; };
 		22520A2C2A46FC2C00C4A143 /* BudgetCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22520A2B2A46FC2C00C4A143 /* BudgetCardView.swift */; };
 		22F7ABE52A46DB03003BE15D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22F7ABE42A46DB03003BE15D /* GoogleService-Info.plist */; };
 		22F7ABE92A46EE44003BE15D /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 22F7ABE82A46EE44003BE15D /* FirebaseAnalyticsSwift */; };
@@ -25,6 +26,7 @@
 		058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		08E6FCB8569358B19D90020D /* Pods-Hetevch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hetevch.release.xcconfig"; path = "Target Support Files/Pods-Hetevch/Pods-Hetevch.release.xcconfig"; sourceTree = "<group>"; };
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
+		220D020E2A4F21D9001F5C5F /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		22520A2B2A46FC2C00C4A143 /* BudgetCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetCardView.swift; sourceTree = "<group>"; };
 		22F7ABE42A46DB03003BE15D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		22F7ABF02A46F21B003BE15D /* CreateBudgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateBudgetView.swift; sourceTree = "<group>"; };
@@ -58,6 +60,14 @@
 				058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		220D020D2A4F219F001F5C5F /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				220D020E2A4F21D9001F5C5F /* DateExtensions.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		22520A2A2A46FC1900C4A143 /* Components */ = {
@@ -97,6 +107,7 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				220D020D2A4F219F001F5C5F /* Utils */,
 				22520A2A2A46FC1900C4A143 /* Components */,
 				22F7ABEF2A46F203003BE15D /* Screens */,
 				22F7ABE42A46DB03003BE15D /* GoogleService-Info.plist */,
@@ -274,6 +285,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
+				220D020F2A4F21D9001F5C5F /* DateExtensions.swift in Sources */,
 				22F7ABF12A46F21B003BE15D /* CreateBudgetView.swift in Sources */,
 				22520A2C2A46FC2C00C4A143 /* BudgetCardView.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,

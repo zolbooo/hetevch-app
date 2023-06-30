@@ -13,6 +13,11 @@ struct CreateBudgetView: View {
     @State private var amount: Int = 0
     @State private var endDate = Date()
     
+    var onSave: (Int, Date) -> Void
+    private func onSubmit() {
+        onSave(amount, endDate)
+    }
+    
     private var formatter: NumberFormatter {
         let fmt = NumberFormatter()
         fmt.numberStyle = .currency
@@ -33,14 +38,10 @@ struct CreateBudgetView: View {
                 HStack {
                     Text("Өдрийн төсөв")
                     Spacer()
-                    Text(formatter.string(for: {
-                        // See: https://stackoverflow.com/questions/62482308/conversion-from-nstimeinterval-to-days
-                        let hours = Calendar.current.dateComponents([.hour], from: Date(), to: endDate).hour!
-                        let days = ceil(Double(hours) / 24)
-                        return Double(amount) / Double(days + 1) / 100
-                    }())!)
+                    let duration = ceil(Date().daysUntil(endDate: endDate)) + 1
+                    Text(formatter.string(for: Double(amount) / 100 / duration)!)
                 }
-                Button(action: {}) {
+                Button(action: onSubmit) {
                     Text("Хадгалах")
                 }
             }
@@ -51,7 +52,7 @@ struct CreateBudgetView: View {
 struct CreateBudgetView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            CreateBudgetView()
+            CreateBudgetView(onSave: { _, _ in })
         }
     }
 }
