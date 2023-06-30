@@ -9,12 +9,14 @@
 import SwiftUI
 
 struct BudgetCardView: View {
-    var amount: String
+    @Binding var amount: Int
+    var formatter: NumberFormatter
+
     var body: some View {
         HStack(alignment: .bottom) {
             VStack(alignment: .leading, spacing: 8) {
                 Text("Миний зорилтот төлөвлөгөө").font(.caption).fontWeight(.light)
-                Text(amount).font(.title2)
+                Text(formatter.string(for: Double(amount) / 100)!).font(.title2)
             }
             Spacer()
             Image("budget")
@@ -24,6 +26,14 @@ struct BudgetCardView: View {
 
 struct BudgetCardView_Previews: PreviewProvider {
     static var previews: some View {
-        BudgetCardView(amount: "₮ 1,380,000.00")
+        @State var amount = 1300
+        BudgetCardView(amount: $amount, formatter: {
+            let fmt = NumberFormatter()
+            fmt.numberStyle = .currency
+            fmt.minimumFractionDigits = 2
+            fmt.maximumFractionDigits = 2
+            fmt.locale = Locale(identifier: "mn-MN")
+            return fmt
+        }())
     }
 }
