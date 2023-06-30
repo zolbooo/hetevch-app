@@ -7,31 +7,38 @@
 //
 
 import SwiftUI
+import CurrencyField
 
 struct CreateBudgetView: View {
-    @State private var amount = ""
+    @State private var amount: Int = 0
     @State private var endDate = Date()
     
-    private let numberFormatter: NumberFormatter = {
-        let formatter = NumberFormatter()
-        formatter.minimum = .init(integerLiteral: 1)
-        formatter.maximum = .init(integerLiteral: Int.max)
-        formatter.generatesDecimalNumbers = false
-        formatter.maximumFractionDigits = 0
-        return formatter
-    }()
+    private var formatter: NumberFormatter {
+        let fmt = NumberFormatter()
+        fmt.numberStyle = .currency
+        fmt.minimumFractionDigits = 2
+        fmt.maximumFractionDigits = 2
+        fmt.locale = Locale(identifier: "mn-MN")
+        return fmt
+    }
     var body: some View {
         Form {
-            BudgetCardView(amount: "₮ 380,000.00")
+            BudgetCardView(amount: $amount, formatter: formatter)
             Section(header: Text("Төсөв")) {
-                TextField("Хэмжээ", value: $amount, formatter: numberFormatter)
+                CurrencyField(value: $amount, formatter: formatter)
+                    .keyboardType(.numbersAndPunctuation)
                 DatePicker(selection: $endDate, in: Date()..., displayedComponents: .date) { Text("Дуусах өдөр") }
             }
             Section {
                 HStack {
                     Text("Өдрийн төсөв")
                     Spacer()
-                    Text("₮ 38,000.00")
+                    Text(formatter.string(for: {
+                        // See: https://stackoverflow.com/questions/62482308/conversion-from-nstimeinterval-to-days
+                        let hours = Calendar.current.dateComponents([.hour], from: Date(), to: endDate).hour!
+                        let days = ceil(Double(hours) / 24)
+                        return Double(amount) / Double(days + 1) / 100
+                    }())!)
                 }
                 Button(action: {}) {
                     Text("Хадгалах")
