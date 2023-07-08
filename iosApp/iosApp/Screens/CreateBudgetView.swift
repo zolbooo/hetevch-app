@@ -28,7 +28,9 @@ struct CreateBudgetView: View {
     }
     var body: some View {
         Form {
-            BudgetCardView(amount: $amount, formatter: formatter)
+            let duration = ceil(Date().daysUntil(endDate: endDate)) + 1
+            let formattedAmount = formatter.string(for: Double(amount) / 100 / duration)!
+            BudgetCardView(amount: formattedAmount)
             Section(header: Text("Төсөв")) {
                 CurrencyField(value: $amount, formatter: formatter)
                     .keyboardType(.numbersAndPunctuation)
@@ -38,8 +40,7 @@ struct CreateBudgetView: View {
                 HStack {
                     Text("Өдрийн төсөв")
                     Spacer()
-                    let duration = ceil(Date().daysUntil(endDate: endDate)) + 1
-                    Text(formatter.string(for: Double(amount) / 100 / duration)!)
+                    Text(formattedAmount)
                 }
                 Button(action: onSubmit) {
                     Text("Хадгалах")
