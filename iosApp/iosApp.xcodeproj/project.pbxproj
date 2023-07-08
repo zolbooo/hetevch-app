@@ -13,6 +13,7 @@
 		220D020C2A4F16F6001F5C5F /* CurrencyField in Frameworks */ = {isa = PBXBuildFile; productRef = 220D020B2A4F16F6001F5C5F /* CurrencyField */; };
 		220D020F2A4F21D9001F5C5F /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 220D020E2A4F21D9001F5C5F /* DateExtensions.swift */; };
 		22520A2C2A46FC2C00C4A143 /* BudgetCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22520A2B2A46FC2C00C4A143 /* BudgetCardView.swift */; };
+		22E1FD2A2A594D2B000B3A97 /* CreateBudgetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E1FD292A594D2B000B3A97 /* CreateBudgetViewModel.swift */; };
 		22F7ABE52A46DB03003BE15D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22F7ABE42A46DB03003BE15D /* GoogleService-Info.plist */; };
 		22F7ABE92A46EE44003BE15D /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 22F7ABE82A46EE44003BE15D /* FirebaseAnalyticsSwift */; };
 		22F7ABEB2A46EE44003BE15D /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 22F7ABEA2A46EE44003BE15D /* FirebaseCrashlytics */; };
@@ -28,6 +29,7 @@
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		220D020E2A4F21D9001F5C5F /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		22520A2B2A46FC2C00C4A143 /* BudgetCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetCardView.swift; sourceTree = "<group>"; };
+		22E1FD292A594D2B000B3A97 /* CreateBudgetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateBudgetViewModel.swift; sourceTree = "<group>"; };
 		22F7ABE42A46DB03003BE15D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		22F7ABF02A46F21B003BE15D /* CreateBudgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateBudgetView.swift; sourceTree = "<group>"; };
 		4045DECCEB0D45F4E900D146 /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -78,6 +80,14 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		22E1FD282A594D1A000B3A97 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				22E1FD292A594D2B000B3A97 /* CreateBudgetViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		22F7ABEF2A46F203003BE15D /* Screens */ = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +117,7 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				22E1FD282A594D1A000B3A97 /* ViewModels */,
 				220D020D2A4F219F001F5C5F /* Utils */,
 				22520A2A2A46FC1900C4A143 /* Components */,
 				22F7ABEF2A46F203003BE15D /* Screens */,
@@ -287,6 +298,7 @@
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				220D020F2A4F21D9001F5C5F /* DateExtensions.swift in Sources */,
 				22F7ABF12A46F21B003BE15D /* CreateBudgetView.swift in Sources */,
+				22E1FD2A2A594D2B000B3A97 /* CreateBudgetViewModel.swift in Sources */,
 				22520A2C2A46FC2C00C4A143 /* BudgetCardView.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 			);

@@ -5,7 +5,7 @@ struct ContentView: View {
     private var createBudgetUseCase = CreateBudgetUseCase()
     var body: some View {
         NavigationView {
-            CreateBudgetView(onSave: { amount, endDate in
+            CreateBudgetView(viewModel: CreateBudgetViewModel(), onSave: { amount, endDate in
                 let duration = ceil(Date().daysUntil(endDate: endDate)) + 1
                 createBudgetUseCase.setBudget(amount: Int64(amount), duration: Int32(duration))
                 // TODO: Navigate further
